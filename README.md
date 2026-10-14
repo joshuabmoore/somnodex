@@ -24,6 +24,7 @@ This table is regenerated from `datasets/` on every build.
 | Dataset | Host | Access | Subjects | Recordings | Modalities | Staging |
 |---|---|---|---:|---:|---|---|
 | [HMC](https://physionet.org/content/hmc-sleep-staging/) | PhysioNet | open | – | 151 | eeg, eog, emg, ecg | AASM |
+| [ISRUC](https://sleeptight.isr.uc.pt/) | ISR, University of Coimbra | open | 118 | 126 | eeg, eog, emg, ecg, respiratory, spo2, position | AASM |
 | [SHHS](https://sleepdata.org/datasets/shhs) | NSRR | dua | 5,804 | 8,444 | eeg, eog, emg, ecg, respiratory, spo2, position | R&K |
 | [Sleep-EDF](https://physionet.org/content/sleep-edfx/1.0.0/) | PhysioNet | open | 100 | 197 | eeg, eog, emg, respiratory, temperature | R&K |
 <!-- CATALOGUE:END -->

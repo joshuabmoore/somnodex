@@ -1,0 +1,63 @@
+id: isruc-sleep
+name: ISRUC-Sleep
+short_name: ISRUC
+description: >
+  Whole-night PSG (~8 h) from adults at the Sleep Medicine Centre of the
+  Hospital of Coimbra University (CHUC), Portugal, recorded 2009-2013. Three
+  subgroups: (I) 100 subjects with sleep disorders, one session each; (II) 8
+  subjects with sleep disorders, two sessions on different dates; (III) 10
+  healthy controls, one session each. Every recording is scored independently
+  by two experts under AASM rules, and both hypnograms are provided along with
+  per-subject clinical details (diagnoses, medications, EEG alterations).
+url: https://sleeptight.isr.uc.pt/
+host: ISR, University of Coimbra
+access: open
+year_released: 2016
+citations:
+  - text: >
+      Khalighi S, Sousa T, Santos JM, Nunes U. ISRUC-Sleep: A comprehensive
+      public dataset for sleep researchers. Comput Methods Programs Biomed.
+      2016;124:180-192.
+    doi: 10.1016/j.cmpb.2015.10.013
+  - text: >
+      Khalighi S, Sousa T, Pires G, Nunes U. Automatic sleep staging: a computer
+      assisted approach for optimal combination of features and polysomnographic
+      channels. Expert Syst Appl. 2013;40(17):7046-7059.
+population:
+  species: human
+  n_subjects: 118
+  n_recordings: 126
+  age_range: [20, 85]
+  groups: [healthy, osa, clinical]
+recording:
+  type: [psg]
+  setting: [hospital]
+  modalities: [eeg, eog, emg, ecg, respiratory, spo2, position]
+  eeg_channels: 6
+  eeg_montage: F3-A2, C3-A2, O1-A2, F4-A1, C4-A1, O2-A1
+  sampling_rate_hz: 200
+  nights_per_subject: "Subgroups I and III: 1; Subgroup II: 2 (different dates)"
+annotations:
+  staging: aasm
+  epoch_s: 30
+  n_scorers: 2
+  events: []
+formats: [edf+, txt, mat]
+size_gb: 17.67
+tags: [staging, clinical, benchmark, multi-scorer, longitudinal, medication]
+verified: false
+date_added: 2026-10-15
+last_checked: 2026-10-15
+notes: >
+  Files are hosted on MEGA. No explicit license; the site says "publicly
+  available for research purposes" and asks users to cite Khalighi et al. 2016. Raw recordings are EDF+ with a
+  .REC extension; labels are text files with one line per epoch, with sex,
+  height, weight, age and recording date in the header. Pre-extracted .mat
+  channels are also provided (cite Khalighi et al. 2013); they drop the last 30
+  epochs of each recording, so are 30 epochs shorter than the hypnograms.
+  Download sizes: subgroup I 14.12 GB, II 2.2 GB, III 1.35 GB (raw recordings).
+  The site's download page calls subgroup II healthy, but the paper and the
+  site's home page say it had sleep disorders. Inter-scorer kappa: 0.87±0.09
+  (I), 0.82±0.15 (II), 0.90±0.06 (III). 19 channels: 2 EOG, 6 EEG, chin EMG,
+  ECG, 2 leg EMG, snore, 2 airflow, 2 abdominal effort, SaO2, body position;
+  EEG/EOG/EMG/ECG at 200 Hz, others at 12.5-25 Hz.

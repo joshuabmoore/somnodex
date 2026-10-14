@@ -2,13 +2,22 @@ id: hmc-sleep-staging
 name: Haaglanden Medisch Centrum Sleep Staging Database
 short_name: HMC
 description: >
-  Whole-night clinical PSG recordings from adults referred to a hospital sleep
-  centre for a range of sleep disorders, manually scored by sleep technicians
-  under AASM rules.
+  Whole-night clinical PSG recordings collected in 2018 at the Haaglanden
+  Medisch Centrum sleep centre (The Hague, Netherlands), randomly selected from
+  adults referred for PSG for a range of sleep disorders. Recordings are a mix
+  of in-hospital and ambulatory, and were manually scored by sleep technicians
+  under the AASM Manual v2.4.
 url: https://physionet.org/content/hmc-sleep-staging/
+doi: 10.13026/t4w7-3k21
 host: PhysioNet
 access: open
+license: CC-BY-4.0
+year_released: 2021
 citations:
+  - text: >
+      Alvarez-Estevez D, Rijsman R. Haaglanden Medisch Centrum sleep staging
+      database (version 1.1). PhysioNet. 2022.
+    doi: 10.13026/t79q-fr32
   - text: >
       Alvarez-Estevez D, Rijsman RM. Inter-database validation of a deep
       learning approach for automatic sleep scoring. PLoS One.
@@ -16,20 +25,40 @@ citations:
     doi: 10.1371/journal.pone.0256111
 population:
   species: human
+  n_subjects: 151
   n_recordings: 151
   groups: [clinical]
 recording:
   type: [psg]
-  setting: [hospital]
+  setting: [hospital, ambulatory]
   modalities: [eeg, eog, emg, ecg]
   eeg_channels: 4
   eeg_montage: F4-M1, C4-M1, O2-M1, C3-M2
   sampling_rate_hz: 256
+  nights_per_subject: "1"
 annotations:
   staging: aasm
   epoch_s: 30
-formats: [edf]
+  n_scorers: 1
+  events: []
+formats: [edf, edf+, txt]
+size_gb: 15.7
 tags: [staging, clinical, benchmark]
 verified: false
 date_added: 2026-10-15
 last_checked: 2026-10-15
+notes: >
+  Counts are for v1.1 (2022), which removed SN014, SN064 and SN135 for
+  erroneous, unfixable signal data; the PLOS ONE paper describes the original
+  154 recordings. Users of v1.0.x may want to exclude those three. 85 M / 66 F,
+  mean age 53.9 ± 15.4 (age range not published); mean AHI 14.6 ± 16.9.
+  n_subjects (one recording per subject) is inferred from the sex split, and
+  n_scorers from the file structure (one hypnogram per recording); the paper's
+  12-expert rescoring of 5 recordings is not released. Signals: 4 EEG, 2 EOG
+  (E1-M2, E2-M2), chin EMG and one modified lead II ECG, all at 256 Hz with no
+  digital filtering; EDF channel labels use A1/A2 for the mastoid references.
+  Recorded on SOMNOscreen PSG, PSG+ and EEG 10-20 devices (SOMNOmedics).
+  Annotations (EDF+ and CSV text) contain sleep stages plus lights-off and
+  lights-on markers only; recordings are clipped to lights-off/lights-on. The
+  paper cites an earlier dataset DOI, 10.13026/gp48-ea60. Download is 15.7 GB
+  uncompressed (12.9 GB zip).

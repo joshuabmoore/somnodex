@@ -1,0 +1,33 @@
+# Added from issue #1
+id: isruc
+name: ISRUC-Sleep
+short_name: ISRUC
+description: >-
+  A polysomnographic (PSG) dataset named ISRUC-Sleep that was created aiming to help
+  sleep researchers in their studies. The data were obtained from human adults, including
+  healthy subjects, and subjects with sleep disorders under the effect of sleep medication.
+  The dataset, which is structured to support different research objectives, comprises
+  three groups of data:
+
+
+  1. data concerning 100 subjects, with one recording session per subject;
+
+  2. data gathered from 8 subjects; two recording sessions were performed per subject,
+  which are useful for studies involving changes in the PSG signals over time;
+
+  3. data collected from one recording session related to 10 healthy subjects, which
+  are useful for studies involving comparison of healthy subjects with the patients
+  suffering from sleep disorders.
+url: https://sleeptight.isr.uc.pt
+host: Institutional
+access: open
+year_released: 2016
+population:
+  species: human
+  n_subjects: 118
+  groups: [healthy]
+recording:
+  modalities: [eeg, eog, emg, ecg, respiratory, spo2]
+verified: false
+date_added: '2026-10-14'
+last_checked: '2026-10-14'

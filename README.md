@@ -2,6 +2,7 @@
 
 *A catalogue of open-access sleep datasets.*
 
+Open-access sleep datasets are often scattered far and wide across a range of online resources, from the National Sleep Research Resource (NSRR) to PhysioNet, making it challenging for researchers to keep track of new additions to the sleep literature.
 SomnoDex is a curated, searchable index of open-access sleep datasets: polysomnography, EEG, wearables and more. Each dataset is described with structured metadata (population, signals, annotations, access) so you can filter for exactly what your analysis needs.
 
 **Browse:** https://OWNER.github.io/somnodex · **Download:** [`datasets.csv`](https://OWNER.github.io/somnodex/data/datasets.csv) · [`datasets.json`](https://OWNER.github.io/somnodex/data/datasets.json)

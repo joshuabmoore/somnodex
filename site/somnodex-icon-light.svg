@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="16 6 198 210" width="512" height="543">
+  <defs>
+    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b3a55"/>
+      <stop offset="1" stop-color="#1c2740"/>
+    </linearGradient>
+    <linearGradient id="visor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1e3048"/>
+      <stop offset="1" stop-color="#0a1422"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- cables (darker, thicker, shorter for small sizes) -->
+  <g fill="none" stroke="#0b6e78" stroke-width="5" stroke-linecap="round">
+    <path d="M78 70 C 66 50, 52 40, 38 28"/>
+    <path d="M95 58 C 90 40, 84 30, 76 18"/>
+    <path d="M115 54 C 115 38, 115 26, 115 14"/>
+    <path d="M135 58 C 140 40, 146 30, 154 18"/>
+    <path d="M152 70 C 164 50, 178 40, 192 28"/>
+    <path d="M66 90 C 52 80, 40 76, 26 74"/>
+    <path d="M164 90 C 178 80, 190 76, 204 74"/>
+  </g>
+  <g fill="#e07800">
+    <circle cx="38" cy="28" r="6"/><circle cx="76" cy="18" r="6"/>
+    <circle cx="115" cy="14" r="6"/><circle cx="154" cy="18" r="6"/>
+    <circle cx="192" cy="28" r="6"/><circle cx="26" cy="74" r="6"/>
+    <circle cx="204" cy="74" r="6"/>
+  </g>
+
+  <!-- shoulders + neck -->
+  <path d="M44 216 C 52 194, 80 186, 115 186 C 150 186, 178 194, 186 216 Z" fill="#1c2740"/>
+  <rect x="98" y="160" width="34" height="34" rx="8" fill="#22314d"/>
+
+  <!-- head -->
+  <ellipse cx="115" cy="118" rx="58" ry="66" fill="url(#skin)" stroke="#0d1321" stroke-width="3"/>
+
+  <!-- electrode cap -->
+  <path d="M58 104 C 58 60, 86 52, 115 52 C 144 52, 172 60, 172 104 Z" fill="#162238" stroke="#0b6e78" stroke-width="3"/>
+  <g fill="#0d1321" stroke="#5ce1e6" stroke-width="2.5">
+    <circle cx="78" cy="72" r="5.5"/><circle cx="95" cy="60" r="5.5"/>
+    <circle cx="115" cy="56" r="5.5"/><circle cx="135" cy="60" r="5.5"/>
+    <circle cx="152" cy="72" r="5.5"/><circle cx="68" cy="90" r="5.5"/>
+    <circle cx="162" cy="90" r="5.5"/><circle cx="115" cy="78" r="5.5"/>
+  </g>
+  <g fill="#ff9f1c">
+    <circle cx="115" cy="78" r="2.4"/><circle cx="95" cy="60" r="2.4"/><circle cx="135" cy="60" r="2.4"/>
+  </g>
+
+  <!-- side pods -->
+  <rect x="44" y="98" width="22" height="44" rx="7" fill="#22314d" stroke="#0b6e78" stroke-width="3"/>
+  <rect x="164" y="98" width="22" height="44" rx="7" fill="#22314d" stroke="#0b6e78" stroke-width="3"/>
+
+  <!-- visor -->
+  <rect x="54" y="96" width="122" height="48" rx="12" fill="url(#visor)" stroke="#5ce1e6" stroke-width="3.5"/>
+  <polyline filter="url(#glow)" fill="none" stroke="#ffc857" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round"
+    points="66,108 76,108 76,116 84,116 84,124 92,124 92,132 104,132 104,124 110,124 110,110 118,110 118,118 126,118 126,128 136,128 136,120 142,120 142,108 152,108 152,116 164,116"/>
+
+  <!-- lower face -->
+  <path d="M100 166 Q 115 172 130 166" fill="none" stroke="#5a7aa6" stroke-width="3" stroke-linecap="round"/>
+  <path d="M115 148 L 112 157 L 118 157" fill="none" stroke="#5a7aa6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

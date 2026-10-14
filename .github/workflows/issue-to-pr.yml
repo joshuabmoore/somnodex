@@ -1,0 +1,86 @@
+name: Dataset issue → pull request
+
+on:
+  issues:
+    types: [opened, edited, labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: issue-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  convert:
+    if: github.event.issue.state == 'open' && contains(github.event.issue.labels.*.name, 'new-dataset')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+
+      - name: Save issue body
+        env:
+          BODY: ${{ github.event.issue.body }}
+        run: printf '%s' "$BODY" > "$RUNNER_TEMP/issue.md"
+
+      - name: Convert to YAML
+        id: convert
+        run: |
+          set -o pipefail
+          FORCE=""
+          # On edits, the file may already exist on the PR branch; regenerate it.
+          if [ "${{ github.event.action }}" != "opened" ]; then FORCE="--force"; fi
+          python scripts/issue_to_yaml.py "$RUNNER_TEMP/issue.md" --issue-number ${{ github.event.issue.number }} $FORCE \
+            2>&1 | tee "$RUNNER_TEMP/convert.log"
+
+      - name: Validate
+        id: validate
+        run: |
+          set -o pipefail
+          python scripts/validate.py "${{ steps.convert.outputs.path }}" 2>&1 | tee "$RUNNER_TEMP/validate.log"
+
+      - name: Create or update pull request
+        id: pr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: dataset/issue-${{ github.event.issue.number }}
+          add-paths: ${{ steps.convert.outputs.path }}
+          commit-message: "Add dataset ${{ steps.convert.outputs.id }} (#${{ github.event.issue.number }})"
+          title: "Add dataset: ${{ steps.convert.outputs.id }}"
+          body: |
+            Generated from #${{ github.event.issue.number }}. Check the values against the dataset's documentation,
+            set `verified: true` if they're right, then merge.
+
+            Closes #${{ github.event.issue.number }}
+          labels: new-dataset
+
+      - name: Comment on success
+        if: steps.pr.outputs.pull-request-number
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue comment ${{ github.event.issue.number }} --repo ${{ github.repository }} \
+            --body "Thanks! Opened #${{ steps.pr.outputs.pull-request-number }} with the YAML entry for review. Editing this issue will update that PR."
+
+      - name: Comment on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            echo "Couldn't turn this issue into a dataset entry automatically:"
+            echo
+            echo '```'
+            cat "$RUNNER_TEMP/convert.log" "$RUNNER_TEMP/validate.log" 2>/dev/null || true
+            echo '```'
+            echo
+            echo "Edit the issue to fix the fields above and it will retry."
+          } > "$RUNNER_TEMP/comment.md"
+          gh issue comment ${{ github.event.issue.number }} --repo ${{ github.repository }} --body-file "$RUNNER_TEMP/comment.md"

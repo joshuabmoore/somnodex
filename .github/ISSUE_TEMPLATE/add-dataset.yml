@@ -1,0 +1,147 @@
+name: Add a dataset
+description: Suggest an open sleep dataset. Only name, URL, access and modalities are required; fill in what you know.
+title: "[Dataset] "
+labels: [new-dataset]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Submitting this form automatically opens a pull request with a YAML entry for review.
+        Leave anything you don't know blank. Lists can be comma-separated.
+
+  # ---- essentials ----
+  - type: input
+    id: name
+    attributes:
+      label: Dataset name
+      placeholder: Sleep Heart Health Study
+    validations: { required: true }
+  - type: input
+    id: short_name
+    attributes:
+      label: Short name
+      description: Used for the file name / ID (e.g. SHHS, MASS, Sleep-EDF).
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      placeholder: https://...
+    validations: { required: true }
+  - type: dropdown
+    id: access
+    attributes:
+      label: Access
+      options:
+        - open (direct download)
+        - registration (free account)
+        - dua (data use agreement / approval)
+        - on-request (email the authors)
+    validations: { required: true }
+  - type: dropdown
+    id: modalities
+    attributes:
+      label: Modalities
+      multiple: true
+      options: [EEG, EOG, EMG, ECG, Respiratory, SpO2, PPG, Actigraphy, Accelerometry, Position, Temperature, Audio, Video, Intracranial EEG, fNIRS, fMRI, Other]
+    validations: { required: true }
+
+  # ---- details ----
+  - type: input
+    id: host
+    attributes:
+      label: Host
+      placeholder: PhysioNet, NSRR, OpenNeuro, Zenodo, figshare, OSF, institutional...
+  - type: input
+    id: doi
+    attributes:
+      label: DOI
+      placeholder: 10.13026/xxxx
+  - type: input
+    id: license
+    attributes:
+      label: License
+      placeholder: CC-BY-4.0, ODC-By-1.0, custom DUA...
+  - type: input
+    id: year
+    attributes:
+      label: Year released
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+  - type: input
+    id: n_subjects
+    attributes:
+      label: Number of subjects
+  - type: input
+    id: n_recordings
+    attributes:
+      label: Number of recordings
+  - type: input
+    id: age
+    attributes:
+      label: Age range
+      placeholder: 18-80
+  - type: input
+    id: groups
+    attributes:
+      label: Population groups
+      placeholder: healthy, osa, insomnia, narcolepsy, paediatric...
+  - type: dropdown
+    id: rec_type
+    attributes:
+      label: Recording type
+      multiple: true
+      options: [PSG, HSAT, EEG headband, Wearable, Intracranial, Scalp EEG, Other]
+  - type: dropdown
+    id: setting
+    attributes:
+      label: Setting
+      multiple: true
+      options: [Lab, Home, Hospital, ICU, Ambulatory, Other]
+  - type: input
+    id: eeg_channels
+    attributes:
+      label: EEG channels
+  - type: input
+    id: montage
+    attributes:
+      label: EEG montage
+      placeholder: C3-M2, C4-M1
+  - type: input
+    id: fs
+    attributes:
+      label: EEG sampling rate (Hz)
+  - type: dropdown
+    id: staging
+    attributes:
+      label: Sleep staging
+      options: [AASM, R&K, Both AASM and R&K, Other, No staging]
+  - type: input
+    id: epoch
+    attributes:
+      label: Epoch length (s)
+  - type: input
+    id: events
+    attributes:
+      label: Annotated events
+      placeholder: arousals, apneas, spindles, k-complexes...
+  - type: input
+    id: formats
+    attributes:
+      label: File formats
+      placeholder: EDF, BIDS, MAT...
+  - type: input
+    id: tags
+    attributes:
+      label: Tags
+      placeholder: benchmark, longitudinal, sleep-deprivation...
+  - type: textarea
+    id: citation
+    attributes:
+      label: Citation
+      description: Paper to cite when using the dataset (include the DOI if you have it).
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes

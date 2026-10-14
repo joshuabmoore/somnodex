@@ -1,0 +1,36 @@
+name: Monthly link check
+
+on:
+  schedule:
+    - cron: "17 21 1 * *"   # 1st of each month (~08:17 Sydney)
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Check URLs and DOIs
+        id: check
+        continue-on-error: true
+        run: python scripts/check_links.py > "$RUNNER_TEMP/report.md"
+      - name: Open issue if anything broke
+        if: steps.check.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create --repo ${{ github.repository }} \
+            --title "Broken dataset links ($(date +%Y-%m))" \
+            --label link-check \
+            --body-file "$RUNNER_TEMP/report.md" || \
+          gh issue create --repo ${{ github.repository }} \
+            --title "Broken dataset links ($(date +%Y-%m))" \
+            --body-file "$RUNNER_TEMP/report.md"

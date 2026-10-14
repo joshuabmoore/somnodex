@@ -1,0 +1,35 @@
+id: hmc-sleep-staging
+name: Haaglanden Medisch Centrum Sleep Staging Database
+short_name: HMC
+description: >
+  Whole-night clinical PSG recordings from adults referred to a hospital sleep
+  centre for a range of sleep disorders, manually scored by sleep technicians
+  under AASM rules.
+url: https://physionet.org/content/hmc-sleep-staging/
+host: PhysioNet
+access: open
+citations:
+  - text: >
+      Alvarez-Estevez D, Rijsman RM. Inter-database validation of a deep
+      learning approach for automatic sleep scoring. PLoS One.
+      2021;16(8):e0256111.
+    doi: 10.1371/journal.pone.0256111
+population:
+  species: human
+  n_recordings: 151
+  groups: [clinical]
+recording:
+  type: [psg]
+  setting: [hospital]
+  modalities: [eeg, eog, emg, ecg]
+  eeg_channels: 4
+  eeg_montage: F4-M1, C4-M1, O2-M1, C3-M2
+  sampling_rate_hz: 256
+annotations:
+  staging: aasm
+  epoch_s: 30
+formats: [edf]
+tags: [staging, clinical, benchmark]
+verified: false
+date_added: 2026-10-15
+last_checked: 2026-10-15

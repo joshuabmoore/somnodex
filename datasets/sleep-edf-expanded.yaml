@@ -1,0 +1,43 @@
+id: sleep-edf-expanded
+name: Sleep-EDF Database Expanded
+short_name: Sleep-EDF
+description: >
+  Two studies: Sleep Cassette (healthy subjects aged 25-101, ambulatory home
+  recordings, usually two nights each) and Sleep Telemetry (subjects with mild
+  difficulty falling asleep, temazepam vs placebo, in hospital). Widely used
+  benchmark for automatic sleep staging.
+url: https://physionet.org/content/sleep-edfx/1.0.0/
+doi: 10.13026/C2X676
+host: PhysioNet
+access: open
+license: ODC-By-1.0
+citations:
+  - text: >
+      Kemp B, Zwinderman AH, Tuk B, Kamphuisen HAC, Oberyé JJL. Analysis of a
+      sleep-dependent neuronal feedback loop: the slow-wave microcontinuity of
+      the EEG. IEEE Trans Biomed Eng. 2000;47(9):1185-1194.
+    doi: 10.1109/10.867928
+population:
+  species: human
+  n_subjects: 100
+  n_recordings: 197
+  age_range: [18, 101]
+  groups: [healthy, insomnia, older-adults]
+recording:
+  type: [psg]
+  setting: [home, hospital]
+  modalities: [eeg, eog, emg, respiratory, temperature]
+  eeg_channels: 2
+  eeg_montage: Fpz-Cz, Pz-Oz
+  sampling_rate_hz: 100
+  nights_per_subject: "SC: mostly 2; ST: 2 (drug + placebo)"
+annotations:
+  staging: rk
+  epoch_s: 30
+  n_scorers: 1
+  events: []
+formats: [edf]
+tags: [benchmark, staging, ageing, pharmacology]
+verified: false
+date_added: 2026-10-15
+last_checked: 2026-10-15

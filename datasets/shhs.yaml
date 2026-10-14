@@ -1,0 +1,43 @@
+id: shhs
+name: Sleep Heart Health Study
+short_name: SHHS
+description: >
+  Multi-centre cohort study of sleep-disordered breathing and cardiovascular
+  disease in adults aged 40+. Unattended home PSG at two visits (SHHS1,
+  SHHS2), with extensive clinical covariates. Distributed via the National
+  Sleep Research Resource.
+url: https://sleepdata.org/datasets/shhs
+host: NSRR
+access: dua
+citations:
+  - text: >
+      Quan SF, Howard BV, Iber C, et al. The Sleep Heart Health Study: design,
+      rationale, and methods. Sleep. 1997;20(12):1077-1085.
+  - text: >
+      Zhang GQ, Cui L, Mueller R, et al. The National Sleep Research Resource:
+      towards a sleep data commons. J Am Med Inform Assoc. 2018;25(10):1351-1358.
+    doi: 10.1093/jamia/ocy064
+population:
+  species: human
+  n_subjects: 5804
+  n_recordings: 8444
+  age_range: [40, 90]
+  groups: [osa, cardiovascular, older-adults]
+recording:
+  type: [psg]
+  setting: [home]
+  modalities: [eeg, eog, emg, ecg, respiratory, spo2, position]
+  eeg_channels: 2
+  eeg_montage: C3-A2, C4-A1
+  sampling_rate_hz: 125
+  nights_per_subject: "1 per visit (SHHS1, SHHS2)"
+annotations:
+  staging: rk
+  epoch_s: 30
+  events: [arousals, apneas, hypopneas, desaturations]
+formats: [edf, xml]
+tags: [cohort, cardiovascular, staging, apnea, large-scale]
+verified: false
+date_added: 2026-10-15
+last_checked: 2026-10-15
+notes: Requires an NSRR account and approved data access request.

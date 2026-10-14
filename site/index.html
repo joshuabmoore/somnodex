@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open Sleep Datasets</title>
+  <meta name="description" content="A curated, searchable catalogue of open-access sleep datasets: PSG, EEG, wearables and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js"></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="wrap">
+      <div class="brand">
+        <svg class="logo" viewBox="0 0 120 24" aria-hidden="true"><path d="M0 12 L14 12 L18 6 L22 18 L26 9 L30 15 L34 12 L48 12 Q52 2 56 12 Q60 22 64 12 Q68 2 72 12 L120 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div>
+          <h1 id="site-title">Open Sleep Datasets</h1>
+          <p class="tagline" id="site-tagline">A curated catalogue of open-access sleep recordings</p>
+        </div>
+      </div>
+      <nav class="actions">
+        <a id="link-add" class="btn primary" href="#">+ Suggest a dataset</a>
+        <a id="link-repo" class="btn" href="#">GitHub</a>
+        <a class="btn" href="data/datasets.csv" download>CSV</a>
+        <a class="btn" href="data/datasets.json">JSON</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="kpis" id="kpis" aria-label="Summary"></section>
+
+    <div class="tabs" role="tablist">
+      <button role="tab" class="tab active" data-tab="catalogue" aria-selected="true">Catalogue</button>
+      <button role="tab" class="tab" data-tab="stats" aria-selected="false">Statistics</button>
+    </div>
+
+    <section class="controls" aria-label="Filters">
+      <input id="q" type="search" placeholder="Search names, hosts, montages, tags…" autocomplete="off">
+      <div class="filter-row" id="filters"></div>
+      <div class="filter-meta">
+        <span id="count"></span>
+        <label class="toggle"><input type="checkbox" id="verified-only"> verified only</label>
+        <button id="clear" class="linkish" type="button">clear filters</button>
+      </div>
+    </section>
+
+    <section id="tab-catalogue" class="panel">
+      <div class="table-wrap">
+        <table id="table">
+          <thead>
+            <tr>
+              <th data-sort="name">Dataset</th>
+              <th data-sort="host">Host</th>
+              <th data-sort="access">Access</th>
+              <th data-sort="n_subjects" class="num">Subjects</th>
+              <th data-sort="n_recordings" class="num hide-sm">Recordings</th>
+              <th class="hide-sm">Modalities</th>
+              <th data-sort="staging" class="hide-sm">Staging</th>
+              <th data-sort="date_added" class="hide-sm">Added</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="empty" id="empty" hidden>No datasets match these filters.</p>
+    </section>
+
+    <section id="tab-stats" class="panel" hidden>
+      <p class="note">Statistics reflect the datasets currently matching your filters.</p>
+      <div class="charts" id="charts"></div>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <span id="generated"></span>
+    <span>Entries marked <span class="badge unverified">unverified</span> have not yet been checked against the source documentation.</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

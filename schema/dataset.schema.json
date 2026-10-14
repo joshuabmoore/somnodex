@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/OWNER/sleep-datasets/schema/dataset.schema.json",
+  "title": "Open sleep dataset entry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "url", "host", "access", "population", "recording", "date_added"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Lowercase slug; must match the file name (e.g. sleep-edf-expanded)."
+    },
+    "name": { "type": "string", "minLength": 2 },
+    "short_name": { "type": "string" },
+    "description": { "type": "string" },
+    "url": { "type": "string", "format": "uri", "pattern": "^https?://" },
+    "doi": { "type": "string", "pattern": "^10\\.\\d{4,9}/\\S+$" },
+    "host": {
+      "type": "string",
+      "description": "Where the data lives, e.g. PhysioNet, NSRR, OpenNeuro, Zenodo, figshare, institutional."
+    },
+    "access": {
+      "type": "string",
+      "enum": ["open", "registration", "dua", "on-request"],
+      "description": "open = direct download; registration = free account; dua = data use agreement / approval; on-request = email the authors."
+    },
+    "license": { "type": "string" },
+    "year_released": { "type": "integer", "minimum": 1980, "maximum": 2100 },
+    "citations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text"],
+        "properties": {
+          "text": { "type": "string" },
+          "doi": { "type": "string", "pattern": "^10\\.\\d{4,9}/\\S+$" }
+        }
+      }
+    },
+    "population": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "species": { "type": "string", "default": "human" },
+        "n_subjects": { "type": "integer", "minimum": 1 },
+        "n_recordings": { "type": "integer", "minimum": 1 },
+        "total_hours": { "type": "number", "minimum": 0 },
+        "age_range": {
+          "type": "array",
+          "items": { "type": "number", "minimum": 0 },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "groups": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+          "description": "e.g. healthy, osa, insomnia, narcolepsy, rbd, parkinsons, paediatric, older-adults"
+        }
+      }
+    },
+    "recording": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["modalities"],
+      "properties": {
+        "type": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "enum": ["psg", "hsat", "eeg-headband", "wearable", "intracranial", "scalp-eeg", "other"] }
+        },
+        "setting": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "enum": ["lab", "home", "hospital", "icu", "ambulatory", "other"] }
+        },
+        "modalities": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": ["eeg", "eog", "emg", "ecg", "respiratory", "spo2", "ppg", "actigraphy", "accelerometry", "position", "temperature", "audio", "video", "intracranial-eeg", "fnirs", "fmri", "other"]
+          }
+        },
+        "eeg_channels": { "type": "integer", "minimum": 0 },
+        "eeg_montage": { "type": "string" },
+        "sampling_rate_hz": {
+          "description": "EEG sampling rate; a single number or a list if it varies.",
+          "oneOf": [
+            { "type": "number", "exclusiveMinimum": 0 },
+            { "type": "array", "items": { "type": "number", "exclusiveMinimum": 0 }, "minItems": 1 }
+          ]
+        },
+        "nights_per_subject": { "type": "string" }
+      }
+    },
+    "annotations": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "staging": { "enum": ["aasm", "rk", "both", "other", "none"] },
+        "epoch_s": { "type": "number", "exclusiveMinimum": 0 },
+        "n_scorers": { "type": "integer", "minimum": 0 },
+        "events": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+          "description": "e.g. arousals, apneas, hypopneas, desaturations, spindles, k-complexes, limb-movements"
+        }
+      }
+    },
+    "formats": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string" },
+      "description": "e.g. edf, edf+, bdf, bids, mat, fif, csv, xml"
+    },
+    "size_gb": { "type": "number", "minimum": 0 },
+    "tags": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" }
+    },
+    "verified": {
+      "type": "boolean",
+      "default": false,
+      "description": "true once the entry has been checked against the dataset's own documentation."
+    },
+    "date_added": { "type": "string", "format": "date" },
+    "last_checked": { "type": "string", "format": "date" },
+    "notes": { "type": "string" }
+  }
+}

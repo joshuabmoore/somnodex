@@ -5,7 +5,7 @@
 Open-access sleep datasets are often scattered far and wide across a range of online resources, from the National Sleep Research Resource (NSRR) to PhysioNet, making it challenging for researchers to keep track of new additions to the sleep literature.
 SomnoDex is a curated, searchable index of open-access sleep datasets: polysomnography, EEG, wearables and more. Each dataset is described with structured metadata (population, signals, annotations, access) so you can filter for exactly what your analysis needs.
 
-**Browse:** https://OWNER.github.io/somnodex · **Download:** [`datasets.csv`](https://OWNER.github.io/somnodex/data/datasets.csv) · [`datasets.json`](https://OWNER.github.io/somnodex/data/datasets.json)
+**Browse:** https://joshuabmoore.github.io/somnodex · **Download:** [`datasets.csv`](https://joshuabmoore.github.io/somnodex/data/datasets.csv) · [`datasets.json`](https://joshuabmoore.github.io/somnodex/data/datasets.json)
 
 **Know a dataset that's missing?** [Suggest it here](../../issues/new?template=add-dataset.yml). The form opens a pull request automatically.
 
@@ -53,7 +53,7 @@ python scripts/build.py && python -m http.server -d _site 8000   # preview at ht
 
 ```python
 import pandas as pd
-df = pd.read_csv("https://OWNER.github.io/somnodex/data/datasets.csv")
+df = pd.read_csv("https://joshuabmoore.github.io/somnodex/data/datasets.csv")
 df[(df.access == "open") & df.modalities.str.contains("eeg") & (df.staging == "aasm")]
 ```
 
@@ -61,15 +61,6 @@ df[(df.access == "open") & df.modalities.str.contains("eeg") & (df.staging == "a
 
 - **Monthly link check:** a scheduled Action checks every URL and DOI and opens an issue listing any that fail.
 - **`last_checked`:** bump this date when you re-verify an entry.
-
-## One-time setup
-
-1. Push this repo to GitHub.
-2. **Settings → Pages → Source:** choose **GitHub Actions**.
-3. **Settings → Actions → General → Workflow permissions:** select *Read and write permissions* and tick **Allow GitHub Actions to create and approve pull requests** (needed for issue → PR).
-4. Create a label called `new-dataset` (and optionally `link-check`).
-5. Replace `OWNER` in this README and in `CITATION.cff`. On a custom domain, also set `repo` in `site/config.js`.
-6. Optional: enable the [Zenodo GitHub integration](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content) and cut a release to get a citable DOI.
 
 ## Citing
 

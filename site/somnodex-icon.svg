@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-8 -10 246 246" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1321"/>
+      <stop offset="1" stop-color="#14213d"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b3a55"/>
+      <stop offset="1" stop-color="#1c2740"/>
+    </linearGradient>
+    <linearGradient id="visor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1e3048"/>
+      <stop offset="1" stop-color="#0a1422"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  
+  <g>
+    <!-- cables -->
+    <g fill="none" stroke="#5ce1e6" stroke-width="3" stroke-linecap="round" opacity="0.85">
+      <path d="M78 70 C 60 40, 40 30, 22 12"/>
+      <path d="M95 58 C 88 30, 80 18, 70 2"/>
+      <path d="M115 54 C 115 30, 118 16, 120 0"/>
+      <path d="M135 58 C 145 30, 158 18, 172 4"/>
+      <path d="M152 70 C 172 44, 192 34, 214 18"/>
+      <path d="M68 88 C 44 72, 24 70, 6 64"/>
+      <path d="M162 88 C 188 72, 206 70, 226 66"/>
+    </g>
+    <!-- cable plugs -->
+    <g fill="#ff9f1c">
+      <circle cx="22" cy="12" r="4"/><circle cx="70" cy="2" r="4"/>
+      <circle cx="120" cy="0" r="4"/><circle cx="172" cy="4" r="4"/>
+      <circle cx="214" cy="18" r="4"/><circle cx="6" cy="64" r="4"/>
+      <circle cx="226" cy="66" r="4"/>
+    </g>
+
+    <!-- shoulders -->
+    <path d="M40 232 C 50 196, 80 186, 115 186 C 150 186, 180 196, 190 232 Z" fill="#1c2740" stroke="#3d5a80" stroke-width="2"/>
+    <!-- neck -->
+    <rect x="98" y="160" width="34" height="34" rx="8" fill="#22314d"/>
+
+    <!-- head -->
+    <ellipse cx="115" cy="118" rx="58" ry="66" fill="url(#skin)" stroke="#3d5a80" stroke-width="2"/>
+
+    <!-- electrode cap -->
+    <path d="M58 104 C 58 60, 86 52, 115 52 C 144 52, 172 60, 172 104 Z" fill="#162238" stroke="#5ce1e6" stroke-width="2"/>
+    <g fill="#0d1321" stroke="#5ce1e6" stroke-width="2">
+      <circle cx="78" cy="72" r="5"/><circle cx="95" cy="60" r="5"/>
+      <circle cx="115" cy="56" r="5"/><circle cx="135" cy="60" r="5"/>
+      <circle cx="152" cy="72" r="5"/><circle cx="68" cy="90" r="5"/>
+      <circle cx="162" cy="90" r="5"/><circle cx="115" cy="78" r="5"/>
+    </g>
+    <g fill="#ff9f1c" filter="url(#glow)">
+      <circle cx="115" cy="78" r="2"/><circle cx="95" cy="60" r="2"/><circle cx="135" cy="60" r="2"/>
+    </g>
+
+    <!-- side pods -->
+    <rect x="46" y="100" width="18" height="40" rx="6" fill="#22314d" stroke="#5ce1e6" stroke-width="2"/>
+    <rect x="166" y="100" width="18" height="40" rx="6" fill="#22314d" stroke="#5ce1e6" stroke-width="2"/>
+
+    <!-- visor -->
+    <rect x="56" y="98" width="118" height="44" rx="12" fill="url(#visor)" stroke="#5ce1e6" stroke-width="2.5"/>
+    <!-- hypnogram on visor -->
+    <polyline filter="url(#glow)" fill="none" stroke="#ffc857" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"
+      points="66,108 76,108 76,116 84,116 84,124 92,124 92,132 104,132 104,124 110,124 110,110 118,110 118,118 126,118 126,128 136,128 136,120 142,120 142,108 152,108 152,116 164,116"/>
+
+    <!-- lower face -->
+    <path d="M100 166 Q 115 172 130 166" fill="none" stroke="#3d5a80" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M115 146 L 112 156 L 118 156" fill="none" stroke="#3d5a80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg>

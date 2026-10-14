@@ -9,9 +9,12 @@
 Open-access sleep datasets are often scattered far and wide across a range of online resources, from the National Sleep Research Resource (NSRR) to PhysioNet, making it challenging for researchers to keep track of new additions to the sleep literature.
 SomnoDex is a curated, searchable index of open-access sleep datasets: polysomnography, EEG, wearables and more. Each dataset is described with structured metadata (population, signals, annotations, access) so you can filter for exactly what your analysis needs.
 
-**Browse:** https://joshuabmoore.github.io/somnodex · **Download:** [`datasets.csv`](https://joshuabmoore.github.io/somnodex/data/datasets.csv) · [`datasets.json`](https://joshuabmoore.github.io/somnodex/data/datasets.json)
-
-**Know a dataset that's missing?** [Suggest it here](../../issues/new?template=add-dataset.yml). The form opens a pull request automatically.
+<p align="center">
+  <a href="https://joshuabmoore.github.io/somnodex"><img src="https://img.shields.io/badge/🔍_Browse-the_catalogue-4c8bf5?style=for-the-badge" alt="Browse"></a>
+  <a href="https://joshuabmoore.github.io/somnodex/data/datasets.csv"><img src="https://img.shields.io/badge/⬇️_Download-CSV-2ea44f?style=for-the-badge" alt="Download CSV"></a>
+  <a href="https://joshuabmoore.github.io/somnodex/data/datasets.json"><img src="https://img.shields.io/badge/⬇️_Download-JSON-2ea44f?style=for-the-badge" alt="Download JSON"></a>
+  <a href="../../issues/new?template=add-dataset.yml"><img src="https://img.shields.io/badge/➕_Suggest-a_dataset-f39c12?style=for-the-badge" alt="Suggest a dataset"></a>
+</p>
 
 ## Catalogue
 

@@ -6,7 +6,7 @@ authors:
   - family-names: Moore
     given-names: Joshua
     affiliation: "School of Physics, The University of Sydney"
-repository-code: "https://github.com/OWNER/somnodex"
-url: "https://OWNER.github.io/somnodex"
+repository-code: "https://github.com/joshuabmoore/somnodex"
+url: "https://joshuabmoore.github.io/somnodex"
 license: CC-BY-4.0
 keywords: [sleep, polysomnography, EEG, open data, datasets]

@@ -1,12 +1,12 @@
 cff-version: 1.2.0
 message: "If you use this catalogue, please cite it as below, and cite the original datasets you use."
-title: "Open Sleep Datasets: a curated catalogue of open-access sleep recordings"
+title: "SomnoDex: a curated catalogue of open-access sleep recordings"
 type: dataset
 authors:
   - family-names: Moore
     given-names: Joshua
     affiliation: "School of Physics, The University of Sydney"
-repository-code: "https://github.com/OWNER/sleep-datasets"
-url: "https://OWNER.github.io/sleep-datasets"
+repository-code: "https://github.com/OWNER/somnodex"
+url: "https://OWNER.github.io/somnodex"
 license: CC-BY-4.0
 keywords: [sleep, polysomnography, EEG, open data, datasets]

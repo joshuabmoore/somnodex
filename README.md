@@ -1,8 +1,10 @@
-# Open Sleep Datasets
+# SomnoDex
 
-A curated, searchable catalogue of open-access sleep datasets: polysomnography, EEG, wearables and more. Each dataset is described with structured metadata (population, signals, annotations, access) so you can filter for exactly what your analysis needs.
+*A catalogue of open-access sleep datasets.*
 
-**Browse:** https://OWNER.github.io/sleep-datasets · **Download:** [`datasets.csv`](https://OWNER.github.io/sleep-datasets/data/datasets.csv) · [`datasets.json`](https://OWNER.github.io/sleep-datasets/data/datasets.json)
+SomnoDex is a curated, searchable index of open-access sleep datasets: polysomnography, EEG, wearables and more. Each dataset is described with structured metadata (population, signals, annotations, access) so you can filter for exactly what your analysis needs.
+
+**Browse:** https://OWNER.github.io/somnodex · **Download:** [`datasets.csv`](https://OWNER.github.io/somnodex/data/datasets.csv) · [`datasets.json`](https://OWNER.github.io/somnodex/data/datasets.json)
 
 **Know a dataset that's missing?** [Suggest it here](../../issues/new?template=add-dataset.yml). The form opens a pull request automatically.
 
@@ -50,7 +52,7 @@ python scripts/build.py && python -m http.server -d _site 8000   # preview at ht
 
 ```python
 import pandas as pd
-df = pd.read_csv("https://OWNER.github.io/sleep-datasets/data/datasets.csv")
+df = pd.read_csv("https://OWNER.github.io/somnodex/data/datasets.csv")
 df[(df.access == "open") & df.modalities.str.contains("eeg") & (df.staging == "aasm")]
 ```
 

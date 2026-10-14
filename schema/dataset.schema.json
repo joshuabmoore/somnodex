@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/OWNER/sleep-datasets/schema/dataset.schema.json",
+  "$id": "https://github.com/OWNER/somnodex/schema/dataset.schema.json",
   "title": "Open sleep dataset entry",
   "type": "object",
   "additionalProperties": false,

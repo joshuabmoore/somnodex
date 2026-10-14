@@ -13,7 +13,7 @@ import requests
 
 from catalogue import dataset_files, load_entry
 
-HEADERS = {"User-Agent": "sleep-datasets-link-check/1.0 (+https://github.com)"}
+HEADERS = {"User-Agent": "somnodex-link-check/1.0 (+https://github.com)"}
 
 
 def check(url: str) -> tuple[str, str | None]:

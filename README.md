@@ -31,6 +31,7 @@ This table is regenerated from `datasets/` on every build.
 | [DCSM](https://erda.ku.dk/public/archives/db553715ecbe1f3ac66c1dc569826eef/published-archive.html) | ERDA (University of Copenhagen) | open | – | 255 | eeg, eog, emg | AASM |
 | [DOD](https://zenodo.org/records/15900394) | Zenodo | open | 80 | 81 | eeg, eog, emg, ecg | AASM |
 | [DREAMS](https://zenodo.org/records/2650142) | Zenodo | open | 47 | 47 | eeg, eog, emg, ecg, respiratory | AASM + R&K |
+| [HK1K](https://zenodo.org/records/17138539) | Zenodo | open | 1,032 | 1,032 | eeg, ecg | none |
 | [HMC](https://physionet.org/content/hmc-sleep-staging/) | PhysioNet | open | 151 | 151 | eeg, eog, emg, ecg | AASM |
 | [HSP](https://bdsp.io/content/hsp/3.0/) | BDSP (AWS S3) | dua | 90,166 | 119,234 | eeg, eog, emg, ecg, respiratory, spo2 | AASM |
 | [ISRUC](https://sleeptight.isr.uc.pt/) | ISR, University of Coimbra | open | 118 | 126 | eeg, eog, emg, ecg, respiratory, spo2, position | AASM |

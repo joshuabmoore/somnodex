@@ -1,0 +1,74 @@
+id: hk1k
+name: Helsinki Kids 1K
+short_name: HK1K
+description: >
+  Routine clinical daytime EEG/ECG from 1032 children aged 2 months to 16
+  years at Helsinki University Hospital (2011-2016), all with a normal EEG
+  report and typical neurodevelopment confirmed over four years of follow-up.
+  Each recording is a 15-minute segment around the onset of N2 sleep (5 min
+  before, 10 min after), with 19-channel 10-20 EEG and one ECG channel.
+  Intended as a normative paediatric reference for brain-age and ECG-age
+  modelling and foundation-model pretraining.
+url: https://zenodo.org/records/17138539
+doi: 10.5281/zenodo.17138539
+host: Zenodo
+access: open
+license: CC-BY-4.0
+year_released: 2025
+citations:
+  - text: >
+      Stevenson NJ, Iyer KK, Roberts JA, Ahtola E, Lauronen L, Vanhatalo S. A
+      dataset of EEG and ECG recordings around the onset of NREM sleep from
+      infancy to adolescence. Sci Data. 2026;13:1018.
+    doi: 10.1038/s41597-026-07356-3
+  - text: >
+      Iyer KK, et al. A growth chart of brain function from infancy to
+      adolescence based on EEG. EBioMedicine. 2024;102:105061.
+    doi: 10.1016/j.ebiom.2024.105061
+  - text: >
+      Iyer KK, et al. Age prediction from infancy to adolescence at the onset
+      of light sleep using an ECG-derived tachogram. Biomed Signal Process
+      Control. 2026;111:108234.
+    doi: 10.1016/j.bspc.2025.108234
+population:
+  species: human
+  n_subjects: 1032
+  n_recordings: 1032
+  total_hours: 258
+  age_range: [0.17, 16]
+  groups: [healthy, paediatric]
+recording:
+  type: [scalp-eeg]
+  setting: [hospital]
+  modalities: [eeg, ecg]
+  eeg_channels: 19
+  eeg_montage: >-
+    Referential 10-20: Fp1, Fp2, F7, F3, Fz, F4, F8, T3/T7, C3, Cz, C4, T4/T8,
+    T5, P3, Pz, P4, T6, O1, O2 (reference location varies; it is the channel
+    with near-zero amplitude)
+  sampling_rate_hz: 250
+  nights_per_subject: "0 (daytime nap)"
+annotations:
+  staging: none
+  events: []
+formats: [edf, csv]
+size_gb: 6.6
+tags: [paediatric-normative, brain-age, nap, clinical]
+verified: false
+date_added: 2026-10-15
+last_checked: 2026-10-15
+notes: >
+  Recorded on a NicoletOne system with a Waveguard cap during routine
+  out-patient clinical EEG after parent-instructed partial sleep deprivation
+  (woken 2-4 h early). The 15-minute segment is anchored on N2 onset (first
+  spindle or K-complex, AASM) as marked by an experienced EEG technician, but
+  no hypnogram or onset annotation is distributed; by construction N2 onset is
+  at 5 min. Other polygraphic channels (respiration, EMG, eye movements) were
+  removed. Of 1056 screened recordings, 24 with zero-runs from impedance checks
+  were dropped. Roughly 28 ECGs are too noisy for R-peak detection. Age and sex
+  are in anon_codex_age_sex.csv; age is quantised into data-driven,
+  roughly log-spaced bins of at least 10 children each, so the 0.17-year lower
+  bound (2 months, from the paper) is approximate; the Zenodo description says
+  6 months. Files: edf_files.zip (6.56 GB) and the CSV. MATLAB loader and
+  analysis code: github.com/nstevensonUH/EEG_release_supporting_code. Creators
+  are QIMR Berghofer and Helsinki University Hospital.

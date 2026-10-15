@@ -14,6 +14,7 @@ SomnoDex is a curated, searchable index of open-access sleep datasets: polysomno
   <a href="https://joshuabmoore.github.io/somnodex/data/datasets.csv"><img src="https://img.shields.io/badge/⬇️_Download-CSV-2ea44f?style=for-the-badge" alt="Download CSV"></a>
   <a href="https://joshuabmoore.github.io/somnodex/data/datasets.json"><img src="https://img.shields.io/badge/⬇️_Download-JSON-2ea44f?style=for-the-badge" alt="Download JSON"></a>
   <a href="../../issues/new?template=add-dataset.yml"><img src="https://img.shields.io/badge/➕_Suggest-a_dataset-f39c12?style=for-the-badge" alt="Suggest a dataset"></a>
+  <a href="https://doi.org/10.5281/zenodo.23382719"><img src="https://zenodo.org/badge/1419838765.svg" alt="DOI"></a>
 </p>
 
 ## Catalogue

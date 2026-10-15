@@ -28,9 +28,9 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh issue create --repo ${{ github.repository }} \
-            --title "Broken dataset links ($(date +%Y-%m))" \
+            --title "Broken links ($(date +%Y-%m))" \
             --label link-check \
             --body-file "$RUNNER_TEMP/report.md" || \
           gh issue create --repo ${{ github.repository }} \
-            --title "Broken dataset links ($(date +%Y-%m))" \
+            --title "Broken links ($(date +%Y-%m))" \
             --body-file "$RUNNER_TEMP/report.md"

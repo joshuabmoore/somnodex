@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check that every dataset URL and DOI still resolves.
+"""Check that every dataset and pipeline URL, DOI and code link still resolves.
 
 Prints a Markdown report; exits 1 if anything is broken (used by the monthly
 link-check workflow to open an issue).
@@ -11,7 +11,7 @@ import sys
 
 import requests
 
-from catalogue import dataset_files, load_entry
+from catalogue import dataset_files, load_entry, pipeline_files
 
 HEADERS = {"User-Agent": "somnodex-link-check/1.0 (+https://github.com)"}
 
@@ -36,16 +36,25 @@ def main() -> int:
             targets.append((e["id"], "url", e["url"]))
         if e.get("doi"):
             targets.append((e["id"], "doi", f"https://doi.org/{e['doi']}"))
+    for path in pipeline_files():
+        e = load_entry(path)
+        src = e.get("source") or {}
+        if src.get("url"):
+            targets.append((e["id"], "source.url", src["url"]))
+        if src.get("doi"):
+            targets.append((e["id"], "source.doi", f"https://doi.org/{src['doi']}"))
+        if (src.get("code") or {}).get("url"):
+            targets.append((e["id"], "source.code.url", src["code"]["url"]))
 
     with cf.ThreadPoolExecutor(max_workers=8) as pool:
-        results = dict(pool.map(lambda t: check(t[2]), targets))
+        results = dict(pool.map(check, {u for _, _, u in targets}))
 
     broken = [(i, kind, u, results[u]) for i, kind, u in targets if results.get(u)]
     if not broken:
         print(f"All {len(targets)} links OK.")
         return 0
     print(f"{len(broken)} of {len(targets)} links failed:\n")
-    print("| Dataset | Field | URL | Problem |\n|---|---|---|---|")
+    print("| Entry | Field | URL | Problem |\n|---|---|---|---|")
     for i, kind, u, err in broken:
         print(f"| `{i}` | {kind} | {u} | {err} |")
     return 1

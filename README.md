@@ -23,10 +23,28 @@ This table is regenerated from `datasets/` on every build.
 <!-- CATALOGUE:START -->
 | Dataset | Host | Access | Subjects | Recordings | Modalities | Staging |
 |---|---|---|---:|---:|---|---|
+| [ANPHY-Sleep](https://osf.io/r26fh/) | OSF | open | 28 | 28 | eeg, eog, emg, ecg | AASM |
+| [BAI-Dementia](https://bdsp.io/content/v83ha57g3u22jz0eznrf/1.0.0/) | BDSP (AWS S3) | dua | 5,144 | – | eeg | AASM |
+| [BOAS](https://openneuro.org/datasets/ds005555) | OpenNeuro | open | 100 | 128 | eeg, eog, emg, respiratory, spo2, ppg, accelerometry | AASM |
+| [CAPSLPDB](https://physionet.org/content/capslpdb/) | PhysioNet | open | 108 | 108 | eeg, eog, emg, ecg, respiratory, spo2 | R&K |
+| [DCSM](https://erda.ku.dk/public/archives/db553715ecbe1f3ac66c1dc569826eef/published-archive.html) | ERDA (University of Copenhagen) | open | – | 255 | eeg, eog, emg | AASM |
+| [DOD](https://zenodo.org/records/15900394) | Zenodo | open | 80 | 81 | eeg, eog, emg, ecg | AASM |
+| [DREAMS](https://zenodo.org/records/2650142) | Zenodo | open | 47 | 47 | eeg, eog, emg, ecg, respiratory | AASM + R&K |
 | [HMC](https://physionet.org/content/hmc-sleep-staging/) | PhysioNet | open | 151 | 151 | eeg, eog, emg, ecg | AASM |
+| [HSP](https://bdsp.io/content/hsp/3.0/) | BDSP (AWS S3) | dua | 90,166 | 119,234 | eeg, eog, emg, ecg, respiratory, spo2 | AASM |
 | [ISRUC](https://sleeptight.isr.uc.pt/) | ISR, University of Coimbra | open | 118 | 126 | eeg, eog, emg, ecg, respiratory, spo2, position | AASM |
+| [Luna/GRINS](https://sleepdata.org/datasets/luna-grins) | NSRR | dua | 20 | 20 | eeg | AASM |
+| [MASS](http://ceams-carsm.ca/mass/) | Borealis (Canadian Dataverse), CÉAMS | dua | 200 | 200 | eeg, eog, emg, ecg, respiratory, spo2 | AASM + R&K |
+| [MESA Sleep](https://sleepdata.org/datasets/mesa) | NSRR | dua | 2,056 | 2,056 | eeg, eog, emg, ecg, respiratory, spo2, ppg, position, actigraphy | AASM |
+| [MNC](https://sleepdata.org/datasets/mnc) | NSRR | dua | – | – | eeg, eog, emg, ecg, respiratory, spo2, ppg, position | other |
+| [PhysioNet 2018 Challenge](https://physionet.org/content/challenge-2018/) | PhysioNet | open | 1,983 | 1,983 | eeg, eog, emg, ecg, respiratory, spo2 | AASM |
+| [REM temporal structure (Watson lab)](https://deepblue.lib.umich.edu/data/concern/data_sets/5h73pw60m) | Deep Blue Data (University of Michigan) | open | 9 | – | eeg, eog, ecg, respiratory, intracranial-eeg, video, other | AASM |
+| [RichSleep](https://data.mendeley.com/datasets/35dp3db8yj/1) | Mendeley Data | open | 24 | 24 | eeg, eog, emg, ecg, respiratory, spo2, other | – |
 | [SHHS](https://sleepdata.org/datasets/shhs) | NSRR | dua | 5,804 | 8,444 | eeg, eog, emg, ecg, respiratory, spo2, position | R&K |
 | [Sleep-EDF](https://physionet.org/content/sleep-edfx/1.0.0/) | PhysioNet | open | 100 | 197 | eeg, eog, emg, respiratory, temperature | R&K |
+| [Surrey cEEGrid](https://openneuro.org/datasets/ds005207) | OpenNeuro | open | 20 | 20 | eeg, eog, emg, ecg, actigraphy | AASM |
+| [UESTC multi-night](https://osf.io/gx36m/) | OSF | open | 20 | 60 | eeg, eog, emg | AASM |
+| [WSC](https://sleepdata.org/datasets/wsc) | NSRR | dua | 1,122 | 2,567 | eeg, eog, emg, ecg, respiratory, spo2 | R&K |
 <!-- CATALOGUE:END -->
 
 ## How it works

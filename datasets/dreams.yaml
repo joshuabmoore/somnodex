@@ -1,0 +1,69 @@
+id: dreams
+name: The DREAMS Databases
+short_name: DREAMS
+description: >
+  Eight sleep databases from the DREAMS project (University of Mons TCTS Lab and
+  ULB / CHU de Charleroi sleep laboratory, Belgium), recorded on a 32-channel
+  Brainnet polygraph. Two are whole-night staging sets: Subjects (20 healthy
+  adults) and Patients (27 patients with apnea, PLMS, insomnia and other
+  conditions), each scored under both R&K and AASM. The rest are annotated
+  excerpts or recordings for micro-event detection: artifacts, sleep spindles,
+  K-complexes, rapid eye movements, periodic limb movements and apneas.
+url: https://zenodo.org/records/2650142
+doi: 10.5281/zenodo.2650142
+host: Zenodo
+access: open
+license: CC-BY-NC-ND-3.0
+citations:
+  - text: >
+      Devuyst S. The DREAMS Databases and Assessment Algorithm (v1). Zenodo.
+    doi: 10.5281/zenodo.2650142
+population:
+  species: human
+  n_subjects: 47
+  n_recordings: 47
+  age_range: [19, 74]
+  groups: [healthy, clinical, osa, plm, insomnia]
+recording:
+  type: [psg]
+  setting: [hospital]
+  modalities: [eeg, eog, emg, ecg, respiratory]
+  eeg_channels: 3
+  eeg_montage: CZ-A1 or C3-A1, FP1-A1, O1-A1
+  sampling_rate_hz: [50, 100, 200]
+  nights_per_subject: "1"
+annotations:
+  staging: both
+  epoch_s: 30
+  n_scorers: 1
+  events: [spindles, k-complexes, rapid-eye-movements, limb-movements, apneas, hypopneas, artifacts]
+formats: [edf, txt]
+size_gb: 4.3
+tags: [staging, clinical, benchmark, multi-scorer]
+verified: false
+date_added: 2026-10-15
+last_checked: 2026-10-15
+notes: >
+  One entry for the whole collection (a single Zenodo record, one license, one
+  download page). Counts are the two whole-night staged sets: Subjects, 20
+  healthy, medication-free volunteers chosen for few artifacts (4 M / 16 F,
+  ages 20-65), and Patients, 27 patients (ages 19-74; SAHS, PLMS, dysomnia,
+  insomnia, fibromyalgia, one unspecified). Treating these as 47 distinct people
+  is inferred. Other databases: Artifacts (20 x 15 min excerpts, 1 expert),
+  Spindles (8 x 30 min central EEG, 2 experts; expert 2 scored only the first 6,
+  and expert 1's counts are cut off after 1000 s), K-complexes (the PDF lists 10
+  x 30 min central EEG excerpts and says expert 2 scored only the first 5; the
+  Zenodo page says 5 excerpts), REMs (9 x 30 min, 1 expert), PLMs (10 whole-night
+  recordings, one tibialis EMG scored under ASDA criteria by 1 expert) and Apnea
+  (12 whole-night recordings, AASM respiratory events by 1 expert). From ages,
+  sexes and durations, most PLM recordings appear to be the same nights as
+  Patients recordings (inferred). Staging was by a single expert: R&K in 20 s
+  epochs and AASM, about two years later, in 30 s epochs; hypnogram text files
+  hold one value per 5 s. Subjects/Patients recordings have at least 2 EOG
+  (P8-A1, P18-A1), 3 EEG and chin EMG at 200 Hz; the Apnea set adds ECG, nasal
+  airflow and thoracic/abdominal inductance; the PLM set adds 2 tibialis EMG;
+  some excerpts are at 50 or 100 Hz. The micro-event sets also include automatic
+  detections and a Matlab assessment algorithm. Files are RAR archives (4.3 GB
+  in total; Subjects 1.1 GB, Patients 1.7 GB). Zenodo gives a nominal
+  publication date of 2005-01-01 (record created 2019), so year_released is
+  left out. Non-commercial, no-derivatives license.

@@ -1,0 +1,67 @@
+id: wsc
+name: Wisconsin Sleep Cohort
+short_name: WSC
+description: >
+  Population-based longitudinal cohort (started 1988) of Wisconsin state
+  employees aged 30-60 at recruitment, sampled via a mailed sleep survey with
+  over-sampling of people at high risk of sleep apnea. Participants had repeated
+  overnight in-lab PSG roughly every four years until 2015, plus questionnaires,
+  blood draws, blood pressure and MSLTs. Distributed (in part) via the National
+  Sleep Research Resource.
+url: https://sleepdata.org/datasets/wsc
+doi: 10.25822/js0k-yh52
+host: NSRR
+access: dua
+year_released: 2020
+citations:
+  - text: >
+      Young T, Palta M, Dempsey J, Peppard PE, Nieto FJ, Hla KM. Burden of sleep
+      apnea: rationale, design, and major findings of the Wisconsin Sleep Cohort
+      study. WMJ. 2009;108(5):246-249.
+  - text: >
+      Zhang GQ, Cui L, Mueller R, et al. The National Sleep Research Resource:
+      towards a sleep data commons. J Am Med Inform Assoc. 2018;25(10):1351-1358.
+    doi: 10.1093/jamia/ocy064
+population:
+  species: human
+  n_subjects: 1122
+  n_recordings: 2567
+  age_range: [37, 85]
+  groups: [osa, older-adults]
+recording:
+  type: [psg]
+  setting: [lab]
+  modalities: [eeg, eog, emg, ecg, respiratory, spo2]
+  nights_per_subject: "1 per visit; up to 5 visits (~4-year intervals)"
+annotations:
+  staging: rk
+  epoch_s: 30
+  events: [apneas, hypopneas, desaturations, limb-movements]
+formats: [edf, txt, annot, csv]
+tags: [cohort, apnea, longitudinal, ageing, medication, large-scale]
+verified: false
+date_added: 2026-10-15
+last_checked: 2026-10-15
+notes: >
+  Requires an NSRR account and approved data request; use is restricted to
+  non-commercial, sleep-related research by people affiliated with an academic
+  research institution (review can take up to three weeks). NSRR holds only a
+  subset of all WSC data (consent refusals, funded projects, paper records);
+  further data can be requested from the WSC team. Counts come from NSRR
+  dictionary v0.9.0 (October 2026): PSG visit records are visit 1 = 1,122,
+  visit 2 = 757, visit 3 = 565, visit 4 = 121, visit 5 = 2 (2,567 total;
+  1,382 male / 1,185 female records), and the harmonized folder holds 2,567
+  EDF + .annot pairs (5,134 files). n_subjects is inferred from the visit-1
+  count. Age at PSG 37-85 (visit-1 mean 56.4). Recruitment age 30-60; the
+  study page cites ~1,500 participants and the Stephansen et al. 2018 paper
+  used 2,167 PSGs from 1,086 subjects for training. Equipment: Grass
+  Heritage (2000-2009) then Grass Comet (2009-2015) digital systems; signals
+  include EEG, EOG, chin and leg EMG, ECG, snore microphone, thermistor and
+  nasal pressure airflow, RIP effort and SpO2. EEG montage and sampling rates
+  are not documented on the landing pages. The PSG documentation says scoring
+  used "AASM criteria", but the staging rules it lists include stages 3 and 4
+  (R&K); staging is recorded here as R&K (inferred). Original annotations are
+  Profusion-derived text files (.stg.txt staging, .sco.txt events, .log.txt,
+  .allscore.txt); NSRR also provides harmonized EDF/.annot files (added June
+  2026). Covariates (CSV) include demographics, BMI, AHI, medications, blood
+  pressure, mailed surveys and MSLT data (1989-2011). No license is stated.

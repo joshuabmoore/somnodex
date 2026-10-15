@@ -1,0 +1,70 @@
+id: dreem-dod
+name: Dreem Open Datasets
+short_name: DOD
+description: >
+  Two multi-scored PSG datasets released by Dreem for benchmarking automated
+  sleep staging against a consensus of human experts. DOD-H: 25 healthy adult
+  volunteers recorded at the French Armed Forces Biomedical Research Institute
+  (IRBA), Bretigny-sur-Orge, France. DOD-O: 55 patients with obstructive sleep
+  apnea recorded at the Stanford Sleep Medicine Center. Every record was scored
+  independently by 5 registered sleep technologists from 3 sleep centres under
+  the AASM Manual v2.5.
+url: https://zenodo.org/records/15900394
+doi: 10.5281/zenodo.15900394
+host: Zenodo
+access: open
+license: MIT
+year_released: 2019
+citations:
+  - text: >
+      Guillot A, Sauvet F, During EH, Thorey V. Dreem Open Datasets:
+      Multi-Scored Sleep Datasets to Compare Human and Automated Sleep Staging.
+      IEEE Trans Neural Syst Rehabil Eng. 2020;28(9):1955-1965.
+    doi: 10.1109/TNSRE.2020.3011181
+population:
+  species: human
+  n_subjects: 80
+  n_recordings: 81
+  groups: [healthy, osa]
+recording:
+  type: [psg]
+  setting: [lab]
+  modalities: [eeg, eog, emg, ecg]
+  eeg_montage: >-
+    DOD-H (12): C3/M2, F4/M1, F3/F4, F3/M2, F4/O2, F3/O1, FP1/F3, FP1/M2,
+    FP1/O1, FP2/F4, FP2/M1, FP2/O2; DOD-O (8): C3/M2, C4/M1, F3/F4, F3/M2,
+    F4/O2, F3/O1, O1/M2, O2/M1
+  sampling_rate_hz: 250
+  nights_per_subject: "1"
+annotations:
+  staging: aasm
+  epoch_s: 30
+  n_scorers: 5
+  events: []
+formats: [h5]
+size_gb: 58.1
+tags: [staging, benchmark, multi-scorer, apnea, clinical]
+verified: false
+date_added: 2026-10-15
+last_checked: 2026-10-15
+notes: >
+  Subsets: DOD-H (25 healthy, 19 M / 6 F, mean age 35.3 ± 7.5, recruited aged
+  18-65, BMI 23.8) recorded on Compumedics Siesta; DOD-O (55 OSA patients, 35 M
+  / 20 F, mean age 45.6 ± 16.5, BMI 29.6, AHI 18.5 ± 16.2; NCT03657329)
+  recorded on SOMNOmedics Somno HD. Age ranges are not published, only means.
+  Signals in both: EEG derivations listed above, chin EMG, left and right EOG
+  and one ECG, all at 250 Hz. The Zenodo record (v1, July 2025, 58.1 GB:
+  dodh.zip 21.9 GB, dodo.zip 36.2 GB) holds one HDF5 file per record with
+  signals and the consensus hypnogram; its index lists 25 DOD-H and 56 DOD-O
+  files. Per the dreem-learning-open README, the extra DOD-O record
+  (5d8e93a5-...) has no consensus annotation and should be excluded to
+  reproduce the paper, hence 81 recordings for 80 published subjects. The
+  data were first distributed in 2019 via an AWS bucket with the paper's code;
+  the Zenodo deposit is the current home. Each of the 5 scorers' hypnograms,
+  plus the consensus, are in the dreem-learning-evaluation GitHub repo
+  (scorers/<dataset>/<scorer>/). The paper's consensus uses the 4 scorers with
+  the highest soft-agreement, with ties broken by the best scorer. Hypnogram
+  codes: -1 not scored, 0 W, 1 N1, 2 N2, 3 N3, 4 REM. The MIT license is the
+  one on the Zenodo record; no separate data license is stated. Setting (lab)
+  is inferred from the recording sites. No respiratory channels or event
+  annotations are described in the paper.

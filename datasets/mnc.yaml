@@ -1,0 +1,62 @@
+id: mnc
+name: Mignot Nature Communications
+short_name: MNC
+description: >
+  Raw PSG data from the multi-cohort neural-network sleep-staging and narcolepsy
+  study of Stephansen et al. (Nature Communications, 2018), from sleep clinics
+  in the USA, Europe and Asia. Includes type 1 narcolepsy cases, other
+  hypersomnia patients and controls; manual staging is provided for the
+  Stanford, Chinese and Danish cohorts. Distributed via the National Sleep
+  Research Resource.
+url: https://sleepdata.org/datasets/mnc
+doi: 10.25822/00tc-zz78
+host: NSRR
+access: dua
+year_released: 2020
+citations:
+  - text: >
+      Stephansen JB, Olesen AN, Olsen M, et al. Neural network analysis of sleep
+      stages enables efficient diagnosis of narcolepsy. Nat Commun.
+      2018;9(1):5229.
+    doi: 10.1038/s41467-018-07229-3
+  - text: >
+      Zhang GQ, Cui L, Mueller R, et al. The National Sleep Research Resource:
+      towards a sleep data commons. J Am Med Inform Assoc. 2018;25(10):1351-1358.
+    doi: 10.1093/jamia/ocy064
+population:
+  species: human
+  groups: [narcolepsy, clinical, healthy]
+recording:
+  type: [psg]
+  modalities: [eeg, eog, emg, ecg, respiratory, spo2, ppg, position]
+  eeg_montage: C3, C4, F3, F4, O1, O2, Cz, M1, M2 (referenced to Fpz)
+  sampling_rate_hz: 128
+annotations:
+  staging: other
+  epoch_s: 30
+formats: [edf, xml, eannot, xlsx]
+tags: [staging, clinical]
+verified: false
+date_added: 2026-10-15
+last_checked: 2026-10-15
+notes: >
+  Requires an NSRR account and approved data request. Seven cohort folders;
+  EDF counts from the NSRR file listing (October 2026): SSC (Stanford Sleep
+  Cohort) ~769 (2,308 files of EDF/XML/.eannot, approximate), CNC (Chinese
+  Narcolepsy Cohort) 139 (of which ~60 "chc2" EDFs have no staging), DHC
+  (Danish Hypersomnia Cohort) 83 (training 20; test: controls 18, nc-lh 25,
+  nc-nh 20), FHC (French) 68, IHC (Italian) 148, KHC (Korean) 158 and IS-RC
+  (inter-scorer reliability cohort) 70, i.e. roughly 1,430 EDFs in total
+  (inferred; not stated by NSRR). Only SSC, CNC and DHC include staging
+  (.eannot/.xml); FHC, IHC, KHC and IS-RC are EDF only, so the paper's
+  6-scorer IS-RC consensus is not released. The paper's ~3,000 recordings also
+  include WSC (released separately on NSRR), the Austrian cohort and a Jazz
+  trial sample, which are not in MNC. cohorts_deid.xlsx (updated 2021-01-22)
+  maps subjects to cohort, diagnosis (T1N, CSF hypocretin, HLA-DQB1*06:02) and
+  analysis split. NSRR states that age and sex are not available. Signals were
+  harmonised with Luna (channel renaming, DHC .mat converted to EDF and EEG
+  polarity flipped, mV to uV); the montage page lists EEG at 128 Hz but rates
+  vary by cohort. Staging labels are harmonised to W/N1/N2/N3/REM (N4 relabelled
+  N3, so some cohorts used R&K-style scoring); the paper cites the AASM manual.
+  Setting (clinic labs) and per-cohort rules are not specified. No license is
+  stated; acknowledgement text (Jazz Pharmaceuticals and others) is required.

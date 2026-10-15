@@ -1,0 +1,67 @@
+id: hsp
+name: The Human Sleep Project
+short_name: HSP
+description: >
+  Large clinical sleep corpus on the Brain Data Science Platform (BDSP).
+  Version 3.0 holds 119,234 recordings (115,129 full in-lab PSGs and 4,105
+  home sleep apnea tests) from 90,166 patients at five de-identified US
+  academic sleep centres, four adult and one paediatric, spanning newborns to
+  over 90 years. Recordings are BIDS-formatted EDF with clinical (AASM-based)
+  scoring for about three quarters of sessions, automated CAISR annotations,
+  and ICD-10 diagnosis metadata.
+url: https://bdsp.io/content/hsp/3.0/
+doi: 10.60508/m3sw-rz13
+host: BDSP (AWS S3)
+access: dua
+license: BDSP Credentialed Health Data License 1.5.0
+year_released: 2023
+citations:
+  - text: >
+      Li Q, Wen S, Sun H, Ganglberger W, et al., Westover MB. The Human Sleep
+      Project (version 3.0). Brain Data Science Platform. 2026.
+    doi: 10.60508/m3sw-rz13
+  - text: >
+      Sun H, et al., Westover MB. The Human Sleep Project (version 2.0). Brain
+      Data Science Platform. 2023.
+    doi: 10.60508/qjbv-hg78
+population:
+  species: human
+  n_subjects: 90166
+  n_recordings: 119234
+  groups: [clinical, osa, paediatric]
+recording:
+  type: [psg, hsat]
+  setting: [lab, home]
+  modalities: [eeg, eog, emg, ecg, respiratory, spo2]
+  eeg_channels: 6
+  eeg_montage: F4-M1, F3-M2, C4-M1, C3-M2, O2-M1, O1-M2
+  nights_per_subject: "1 or more (repeat studies per patient, timestamped)"
+annotations:
+  staging: aasm
+  epoch_s: 30
+  events: [arousals, apneas, hypopneas, limb-movements]
+formats: [edf, bids, tsv, json, csv]
+tags: [staging, clinical, large-scale, cohort, apnea, longitudinal]
+verified: false
+date_added: 2026-10-15
+last_checked: 2026-10-15
+notes: >
+  Counts are for v3.0 (published 2 June 2026), which adds cohorts I0003
+  (paediatric), I0004 and I0006 to S0001 and I0002 from v2.0. v2.0 (1 Nov
+  2023) was MGH only: 19,492 patients and 26,200 PSGs (its Methods also say
+  25,941 PSGs as of April 2023). v3.0 per-cohort subject counts (S0001 19,569;
+  I0002 12,713; I0003 12,825; I0004 29,488; I0006 12,984) sum to 87,579, not
+  the stated 90,166; the page does not explain the gap. Mean age by cohort:
+  52.3, 56.6, 8.0, 50.1 and 54.5 years; percent female 42.7, 45.2, 42.3, 41.2
+  and 51.4. No overall age range or sex counts are published. Human scoring
+  (AASM-based, physician sign-off) covers 84,582 sessions (73.5%): 30 s
+  stages plus respiratory, arousal and limb-movement events; CAISR automated
+  annotations cover about 80,000 sessions. Other channels: EOG, chin and
+  tibialis EMG, ECG, thermistor and nasal-pressure airflow, effort, SpO2, plus
+  derived heart rate and PAP status. Sampling rates are the originals and vary
+  by hardware (read EDF headers); a 200 Hz HDF5 derivative is planned but not
+  yet released. Access requires BDSP credentialing, required training and a
+  signed DUA; files come via an S3 access point. Total size not stated (each
+  cohort is "multi-hundred-GB"). The AWS Open Data registry entry still
+  describes about 15K (elsewhere 19K) MGH patients and names the BDSP
+  Restricted Health Data License 1.0.0.

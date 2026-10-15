@@ -1,0 +1,76 @@
+id: boas
+name: The Bitbrain Open Access Sleep (BOAS) dataset
+short_name: BOAS
+description: >
+  128 nights from 100 healthy adults recorded simultaneously with a clinical
+  PSG system (Micromed) and the Bitbrain Ikon Sleep wearable EEG headband
+  (forehead EEG near AF7/AF8, IMU and PPG). Sleep stages were scored on the PSG
+  by three AASM-trained experts and released as a consensus, with AI-generated
+  labels provided for both the PSG and headband signals. Organised in BIDS on
+  OpenNeuro.
+url: https://openneuro.org/datasets/ds005555
+doi: 10.18112/openneuro.ds005555.v1.1.3
+host: OpenNeuro
+access: open
+license: CC0-1.0
+year_released: 2024
+citations:
+  - text: >
+      López-Larraz E, Sierra-Torralba M, Clemente S, Fierro G, Oriol D,
+      Minguez J, Montesano L, Klinzing JG. The Bitbrain Open Access Sleep
+      (BOAS) dataset. OpenNeuro. ds005555, v1.1.3.
+    doi: 10.18112/openneuro.ds005555.v1.1.3
+  - text: >
+      Esparza-Iaizzo M, Sierra-Torralba M, Klinzing JG, Minguez J, Montesano L,
+      López-Larraz E. Automatic sleep scoring for real-time monitoring and
+      stimulation in individuals with and without sleep apnea. Comput Biol
+      Med. 2026;205:111560.
+    doi: 10.1016/j.compbiomed.2026.111560
+population:
+  species: human
+  n_subjects: 100
+  n_recordings: 128
+  age_range: [18, 82]
+  groups: [healthy]
+recording:
+  type: [psg, eeg-headband]
+  modalities: [eeg, eog, emg, respiratory, spo2, ppg, accelerometry]
+  eeg_channels: 6
+  eeg_montage: >-
+    PSG: F3, F4, C3, C4, O1, O2 referenced to M1; headband: 2 forehead
+    channels (approx. AF7, AF8)
+  sampling_rate_hz: 256
+  nights_per_subject: "1-3"
+annotations:
+  staging: aasm
+  epoch_s: 30
+  n_scorers: 3
+  events: []
+formats: [bids, edf, tsv]
+tags: [staging, benchmark, multi-scorer]
+verified: false
+date_added: 2026-10-15
+last_checked: 2026-10-15
+notes: >
+  Counts are for OpenNeuro v1.1.3 (2026-08-31; first released v1.0.0
+  2024-10-03). Recordings are sub-1 to sub-128; the same person can appear
+  under several sub- IDs, linked by the pid column of participants.tsv (100
+  unique pids: 60 F / 40 M; 1-3 nights each). Age range 18-82 is computed from
+  participants.tsv; one participant's age is n/a and one pid is listed as 34
+  and 35 on different nights. Inclusion: adults from the general population;
+  exclusion: severe medical conditions or medication, severe neurological or
+  psychiatric history, severe health problems in the past 12 months, pregnancy
+  or nursing, psychotropics incl. benzodiazepines/GHB. Each night has a PSG
+  EDF and a headband EDF. The sidecars list PSG F3, F4, C3, C4, O1, O2, one
+  EOG, chin EMG, thermistor, thoracic and abdominal belts, all at 256 Hz; the
+  README also lists nasal cannula and PPG (pulse, SpO2), and headband IMU
+  (accelerometer + gyroscope) and pulse; not every recording has every
+  channel (see channels.tsv). Headband EEG at 256 Hz. Human labels (stage_hum):
+  three scorers, consensus = label given by at least two, a fourth scorer
+  breaks three-way ties; only the consensus is released. AI labels
+  (stage_ai) are given for PSG and headband separately. Codes: 0 W, 1 N1, 2
+  N2, 3 N3, 4 REM, 8 PSG disconnection, -2 artifact. Epoch length 30 s is
+  inferred from AASM scoring. PSG hardware is named as Micromed Brain Quick
+  Plus Evolution in the README and Micromed SD plus in the eeg.json sidecar.
+  Recording setting (home vs lab) is not stated. Collected by Bitbrain,
+  Zaragoza, Spain. Download size not determined.

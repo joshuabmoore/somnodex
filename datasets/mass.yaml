@@ -1,0 +1,73 @@
+id: mass
+name: Montreal Archive of Sleep Studies
+short_name: MASS
+description: >
+  Whole-night laboratory PSG recordings from the Centre d'études avancées en
+  médecine du sommeil (CÉAMS), Hôpital du Sacré-Cœur de Montréal. Cohort 1 has
+  200 nights from 200 adults aged 18-76, split into five subsets (SS1-SS5) that
+  differ in age group, montage and scoring rules. Each subset is released on
+  Borealis as a restricted "Biosignals and Sleep stages" dataset (EDF+ PSG and
+  hypnogram files) plus a separate "Sleep Annotations" dataset with expert and
+  automated event annotations.
+url: http://ceams-carsm.ca/mass/
+host: Borealis (Canadian Dataverse), CÉAMS
+access: dua
+license: CC0-1.0
+year_released: 2014
+citations:
+  - text: >
+      O'Reilly C, Gosselin N, Carrier J, Nielsen T. Montreal Archive of Sleep
+      Studies: an open-access resource for instrument benchmarking and
+      exploratory research. J Sleep Res. 2014;23(6):628-635.
+    doi: 10.1111/jsr.12169
+population:
+  species: human
+  n_subjects: 200
+  n_recordings: 200
+  age_range: [18, 76]
+  groups: [healthy, older-adults]
+recording:
+  type: [psg]
+  setting: [lab]
+  modalities: [eeg, eog, emg, ecg, respiratory, spo2]
+  eeg_montage: >
+    Varies by subset: SS1 17 or 19 EEG, SS2 19, SS3 and SS5 20 (linked-ear
+    reference); SS4 only C3, C4, O1, O2 (computed linked-ear reference)
+  sampling_rate_hz: 256
+  nights_per_subject: "1"
+annotations:
+  staging: both
+  events: [apneas, hypopneas, arousals, spindles, k-complexes]
+formats: [edf+]
+size_gb: 74.9
+tags: [staging, benchmark, ageing, multi-scorer]
+verified: false
+date_added: 2026-10-15
+last_checked: 2026-10-15
+notes: >
+  Data moved from the CÉAMS site to Borealis (borealisdata.ca/dataverse/MASS)
+  in January 2022; only Cohort 1 is released, and the MASS page says no newer
+  cohort is available yet ("stay tuned"). Subsets (Borealis biosignal DOI):
+  SS1 53 subjects aged 55-76, 34 M / 19 F, includes 15 with mild cognitive
+  impairment, AASM 30 s, expert apnea/hypopnea and micro-arousal annotations,
+  24.5 GB (10.5683/SP3/OVISPE); SS2 19 subjects aged 18-33, 8 M / 11 F, R&K
+  20 s, spindles and K-complexes by expert 1 and spindles by expert 2 for 15
+  subjects, 7.1 GB (10.5683/SP3/K26LXJ); SS3 62 subjects aged 20-69, 29 M /
+  33 F, AASM 30 s, 23.5 GB (10.5683/SP3/9MYUCS); SS4 40 subjects aged 18-35,
+  14 M / 26 F, R&K 20 s, 4 EEG plus oximetry, 10.8 GB (10.5683/SP3/MUELFO);
+  SS5 26 subjects aged 20-59, 13 M / 13 F, R&K 20 s, 9.0 GB
+  (10.5683/SP3/WZQMAB). Epoch length (20 or 30 s) and the scoring rules
+  depend on the subset, so epoch_s is left out. Annotation datasets also hold
+  automated muscle-artefact and PLMS detections. Scoring does not necessarily
+  start at the beginning of the recording. Other signals: 2-4 EOG, 1-5 EMG
+  (Borealis says SS3/SS5 EMG is referential, not bipolar as the paper states),
+  1-3 ECG, plus thermistor/nasal cannula in some subsets. 256 Hz is from the
+  2014 paper; the Borealis pages do not give sampling rates. Access: email
+  mass.cnmtl@ssss.gouv.qc.ca with the project and proof of ethics/IRB
+  approval; demographic descriptors need a separate request with hypotheses
+  reviewed by the MASS committee. Some annotation files are listed as public
+  on Borealis. Borealis marks the datasets CC0 "with additional custom terms"
+  (restricted files, required citation of O'Reilly et al. 2014), so the CC0
+  label does not mean unrestricted reuse. The per-subset sex counts sum to
+  98 M / 102 F; the 2014 paper reports 97 M / 103 F. Size is the sum of the
+  five biosignal datasets (inferred).

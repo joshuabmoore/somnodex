@@ -1,0 +1,63 @@
+id: cap-sleep
+name: The CAP Sleep Database
+short_name: CAPSLPDB
+description: >
+  108 whole-night PSG recordings from the Sleep Disorders Center of the
+  University of Parma, Italy: 16 healthy controls and 92 patients with nocturnal
+  frontal lobe epilepsy, REM behaviour disorder, periodic leg movements,
+  insomnia, narcolepsy, sleep-disordered breathing or bruxism. Sleep stages are
+  scored under Rechtschaffen and Kales, and the cyclic alternating pattern (CAP)
+  phase A subtypes (A1-A3) are scored under the Terzano et al. 2001 rules.
+url: https://physionet.org/content/capslpdb/
+doi: 10.13026/C2VC79
+host: PhysioNet
+access: open
+license: ODC-By-1.0
+year_released: 2012
+citations:
+  - text: >
+      Terzano MG, Parrino L, Sherieri A, et al. Atlas, rules, and recording
+      techniques for the scoring of cyclic alternating pattern (CAP) in human
+      sleep. Sleep Med. 2001;2(6):537-553.
+    doi: 10.1016/s1389-9457(01)00149-6
+population:
+  species: human
+  n_subjects: 108
+  n_recordings: 108
+  age_range: [14, 82]
+  groups: [healthy, clinical, epilepsy, rbd, plm, insomnia, narcolepsy, osa, bruxism]
+recording:
+  type: [psg]
+  setting: [hospital]
+  modalities: [eeg, eog, emg, ecg, respiratory, spo2]
+  eeg_montage: >-
+    At least F3 or F4, C3 or C4, O1 or O2 referenced to A1/A2; some records add
+    bipolar Fp1-F3, F3-C3, C3-P3, P3-O1 and/or Fp2-F4, F4-C4, C4-P4, P4-O2
+  nights_per_subject: "1"
+annotations:
+  staging: rk
+  epoch_s: 30
+  events: [cap-a-phases]
+formats: [edf, txt, wfdb]
+size_gb: 40.1
+tags: [staging, clinical]
+verified: false
+date_added: 2026-10-15
+last_checked: 2026-10-15
+notes: >
+  v1.0.0 (2012), the only version. The landing page does not name the
+  recording site; Parma is inferred from the Terzano et al. affiliation. Groups by file prefix: n1-16 healthy, nfle1-40
+  nocturnal frontal lobe epilepsy, rbd1-22, plm1-10, ins1-9 insomnia, narco1-5,
+  sdb1-4 sleep-disordered breathing (mapped to the osa group here, which is
+  inferred), brux1-2. Age and sex come from gender-age.xlsx: 66 M / 42 F, ages
+  14-82; the healthy controls are 7 M / 9 F aged 23-42. One recording per
+  subject is inferred from the file list. Each recording has at least 3
+  referential EEG channels, 2 EOG, chin EMG, bilateral tibialis EMG, airflow,
+  thoracic and abdominal effort, SaO2 and ECG. Channel sets, numbers of EEG
+  derivations and sampling rates differ between records; PhysioNet does not list
+  sampling rates, and third-party papers report that some records are at 512 Hz.
+  Scoring was done in REMlogic (Embla). Each record has a REMlogic .txt score
+  file (stage, body position, time, event, duration, location) and a
+  WFDB-compatible .st annotation file; the 30 s epoch is inferred from those
+  score files. The number of scorers is not stated. Matlab helpers
+  (ScoringReader.m, CAP.m) are included. Download is 40.1 GB uncompressed.

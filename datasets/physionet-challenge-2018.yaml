@@ -1,0 +1,64 @@
+id: physionet-challenge-2018
+name: "You Snooze You Win: The PhysioNet/Computing in Cardiology Challenge 2018"
+short_name: PhysioNet 2018 Challenge
+description: >
+  Overnight clinical PSG from 1,983 adults studied at the Massachusetts General
+  Hospital (MGH) sleep laboratory for diagnosis of sleep disorders, released for
+  the 2018 PhysioNet/CinC Challenge on detecting non-apnea arousals. The data
+  are split into a training set (994) with sleep-stage, arousal and respiratory
+  event annotations, and a test set (989) released without annotations.
+url: https://physionet.org/content/challenge-2018/
+doi: 10.13026/6phb-r450
+host: PhysioNet
+access: open
+license: ODC-By-1.0
+year_released: 2018
+citations:
+  - text: >
+      Ghassemi MM, et al. You Snooze, You Win: the PhysioNet/Computing in
+      Cardiology Challenge 2018. Computing in Cardiology. 2018.
+    doi: 10.22489/CinC.2018.049
+population:
+  species: human
+  n_subjects: 1983
+  n_recordings: 1983
+  age_range: [18, 93]
+  groups: [clinical, osa]
+recording:
+  type: [psg]
+  setting: [lab]
+  modalities: [eeg, eog, emg, ecg, respiratory, spo2]
+  eeg_channels: 6
+  eeg_montage: F3-M2, F4-M1, C3-M2, C4-M1, O1-M2, O2-M1
+  sampling_rate_hz: 200
+  nights_per_subject: "1"
+annotations:
+  staging: aasm
+  epoch_s: 30
+  events: [arousals, apneas, hypopneas]
+formats: [mat, wfdb]
+size_gb: 266.6
+tags: [staging, clinical, benchmark, large-scale, apnea]
+verified: false
+date_added: 2026-10-15
+last_checked: 2026-10-15
+notes: >
+  v1.0.0 (2018), the only version; the version DOI is used here, and PhysioNet's
+  "latest" DOI is 10.13026/1q9b-ge17. The landing page says 1,985 subjects but
+  also gives the split as 994 training + 989 test (1,983); the 1,983 total
+  matches the Ghassemi et al. paper and is used here. Only the 994 training
+  records come with annotations (.arousal WFDB files with 30 s AASM sleep stages
+  and arousal/respiratory event labels, plus sample-wise -arousal.mat label
+  files); test folders contain only signals and headers. Arousal labels include
+  spontaneous, RERA, bruxism, hypoventilation, hypopnea, central/obstructive/
+  mixed apnea, vocalization, snore, PLM, Cheyne-Stokes and partial airway
+  obstruction; stages and arousals were scored by certified MGH sleep
+  technologists (number of scorers per record not stated). Per-subject age and
+  sex are in age-sex.csv (ages 18-93; a few sex values are lowercase "m"); an
+  archived Challenge table reports mean age 55 ± 14.4 and ~65% male but for
+  n = 1,893. The osa group is inferred (the population is described only as
+  referred for sleep disorder diagnosis). Signals (13 per record, checked in a
+  sample header): 6 EEG, one EOG (E1-M2), chin EMG, abdominal and chest effort,
+  airflow, SaO2 and ECG, all at 200 Hz (SaO2 resampled), stored as Matlab v4
+  .mat with WFDB .hea headers. Download is 266.6 GB uncompressed (training and
+  test ~135 GB each).

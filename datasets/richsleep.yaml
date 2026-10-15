@@ -1,0 +1,53 @@
+id: richsleep
+name: RichSleep
+description: >
+  Overnight PSG from 24 healthy young adults (12 M / 12 F, aged 18-24),
+  recorded at the Sleep and Neuroimaging Centre, Southwest University
+  (Chongqing, China), with 18 signals including 6-channel EEG and hypnograms
+  for each recording.
+url: https://data.mendeley.com/datasets/35dp3db8yj/1
+doi: 10.17632/35dp3db8yj.1
+host: Mendeley Data
+access: open
+license: CC-BY-4.0
+year_released: 2023
+citations:
+  - text: >
+      Liu Z, Zhang Q, Luo S, Qin M, Lei X. RichSleep. Mendeley Data, V1. 2023.
+    doi: 10.17632/35dp3db8yj.1
+population:
+  species: human
+  n_subjects: 24
+  n_recordings: 24
+  age_range: [18, 24]
+  groups: [healthy]
+recording:
+  type: [psg]
+  setting: [lab]
+  modalities: [eeg, eog, emg, ecg, respiratory, spo2, other]
+  eeg_channels: 6
+  eeg_montage: F3-A2, F4-A1, C3-A2, C4-A1, O1-A2, O2-A1
+  sampling_rate_hz: 200
+  nights_per_subject: "1"
+annotations:
+  epoch_s: 30
+  events: []
+formats: [edf, txt]
+size_gb: 3.85
+tags: [staging]
+verified: false
+date_added: 2026-10-15
+last_checked: 2026-10-15
+notes: >
+  24 participants were selected from 37 volunteers as physically healthy with
+  no sleep-related disorders, and avoided medication for 3 days beforehand.
+  Recorded in a light-controlled room on sleep beds, sleep opportunity 10 pm to
+  8 am, over 24 days. One night per subject and 24 recordings are inferred
+  (24 subjects over 24 days); the page does not state it and the files list
+  only shows one zip (RichSleep.zip, 3.85 GB). 18 signals: 6 EEG, EOG-L,
+  EOG-R, chin EMG, ECG, respiratory, snore, leg movement, SpO2, CO2, chest and
+  abdominal movement, breath interval; 200 Hz, impedance below 10 (stated as
+  ohms; likely kOhm). Files: *xn.edf (PSG) and *xn-ann.txt (hypnograms with
+  W, 1, 2, 3, R). The scoring standard and number of scorers are not stated,
+  so staging is left unset; the 5-class labels suggest AASM, and a 30 s epoch
+  is inferred. No descriptor paper is linked from the Mendeley page.

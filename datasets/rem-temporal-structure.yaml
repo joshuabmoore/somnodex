@@ -1,0 +1,57 @@
+id: rem-temporal-structure
+name: The temporal structure of REM sleep shows minute-scale fluctuations across brain and body in mice and humans
+short_name: REM temporal structure (Watson lab)
+description: >
+  Data deposit for Bueno-Junior et al. (PNAS 2023) on infraslow (0.01-0.06 Hz)
+  fluctuations within REM sleep. Contains de-identified overnight clinical PSG
+  from 9 healthy adults recorded at the VA Portland Health Care System sleep
+  lab, plus mouse laminar silicon-probe recordings (barrel cortex and
+  hippocampus LFP and sorted spikes) with facial videography, and analysis
+  code.
+url: https://deepblue.lib.umich.edu/data/concern/data_sets/5h73pw60m
+doi: 10.7302/xxgv-ws73
+host: Deep Blue Data (University of Michigan)
+access: open
+license: CC-BY-NC-4.0
+year_released: 2023
+citations:
+  - text: >
+      Bueno-Junior LS, Ruckstuhl MS, Lim MM, Watson BO. The temporal structure
+      of REM sleep shows minute-scale fluctuations across brain and body in
+      mice and humans. Proc Natl Acad Sci U S A. 2023;120(18):e2213438120.
+    doi: 10.1073/pnas.2213438120
+population:
+  species: human, mouse
+  n_subjects: 9
+  groups: [healthy]
+recording:
+  type: [psg, intracranial]
+  setting: [lab]
+  modalities: [eeg, eog, ecg, respiratory, intracranial-eeg, video, other]
+  eeg_channels: 6
+  eeg_montage: F3, F4, C3, C4, O1, O2 (10-20)
+annotations:
+  staging: aasm
+  epoch_s: 30
+tags: [animal, rem]
+verified: false
+date_added: 2026-10-15
+last_checked: 2026-10-15
+notes: >
+  The Deep Blue landing page is behind a bot check and could not be read
+  directly; details come from the DataCite record for the DOI, indexed copies
+  of the landing page and the PNAS paper. Per the indexed landing page: 40
+  files, 188 GB total, CC BY-NC 4.0, published 2023-04-03, with a ReadMe.txt,
+  HumanPSG.zip and per-session mouse LFP/sorted-spike zips. n_subjects counts
+  the 9 human participants (described as healthy in breathing, limb movements
+  and medical history); the paper also uses 6 adult male mice recorded with a
+  64-channel single-shank silicon probe (barrel cortex and hippocampus LFP,
+  Kilosort2-sorted units) in home-cage and head-fixed setups, the latter with
+  infrared eye and whisker video. Human PSG: Nihon Kohden Polysmith, EEG
+  F3/F4/C3/C4/O1/O2, left and right EOG, ECG, abdominal plethysmography and
+  two leg channels ("other"); EMG, SpO2, sampling rates, file format, ages
+  and sex are not stated in the material read. Human staging was manual in
+  30-s epochs by an AASM-accredited technician, verified by a sleep
+  physician; AASM rules are inferred, not stated. The contents of
+  HumanPSG.zip (raw signals vs derived traces, hypnogram files) were not
+  verified. Size is not set because the 188 GB total is mostly mouse data.

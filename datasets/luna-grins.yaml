@@ -1,0 +1,69 @@
+id: luna-grins
+name: Luna/GRINS walkthrough dataset
+short_name: Luna/GRINS
+description: >
+  Whole-night high-density sleep EEG from 20 healthy control participants of
+  the GRINS (Global Research Initiative on the Neurophysiology of
+  Schizophrenia) project, released on NSRR as the teaching dataset for the
+  Luna sleep-signal software walkthrough. Provided as an original version (v1)
+  and a deliberately corrupted version (v2) used to teach QC and
+  harmonisation, plus auxiliary demographics, channel maps and models.
+url: https://sleepdata.org/datasets/luna-grins
+host: NSRR
+access: dua
+year_released: 2025
+citations:
+  - text: >
+      Wang J, Jiang C, Guo Z, et al. Study Protocol: Global Research
+      Initiative on the Neurophysiology of Schizophrenia (GRINS) project. BMC
+      Psychiatry. 2024;24(1):433.
+    doi: 10.1186/s12888-024-05882-1
+  - text: >
+      Kozhemiako N, Jiang C, Sun Y, et al. A spectrum of altered non-rapid eye
+      movement sleep in schizophrenia. Sleep. 2025;48(2):zsae218.
+    doi: 10.1093/sleep/zsae218
+  - text: >
+      Zhang GQ, Cui L, Mueller R, et al. The National Sleep Research Resource:
+      towards a sleep data commons. J Am Med Inform Assoc.
+      2018;25(10):1351-1358.
+    doi: 10.1093/jamia/ocy064
+population:
+  species: human
+  n_subjects: 20
+  n_recordings: 20
+  age_range: [27, 45]
+  groups: [healthy]
+recording:
+  type: [scalp-eeg]
+  modalities: [eeg]
+  eeg_channels: 57
+  eeg_montage: 57-channel hd-EEG plus mastoids A1/A2, recording reference
+  sampling_rate_hz: 128
+  nights_per_subject: "1"
+annotations:
+  staging: aasm
+  epoch_s: 30
+  events: [arousals]
+formats: [edf, edf+, annot, xml, tsv, csv]
+tags: [staging, high-density-eeg, tutorial]
+verified: false
+date_added: 2026-10-15
+last_checked: 2026-10-15
+notes: >
+  Access via an NSRR data access request; data are for non-commercial use
+  only and no licence is stated. Initial deposition March 2025. 20 healthy
+  controls, 10 F / 10 M (IDs F01-F10, M01-M10), aged 27-45 (age and sex in
+  auxiliary/master.txt). v1 is the original export: 57 EEG channels plus
+  mastoids, downsampled from 500 Hz to 128 Hz, EOG/EMG dropped, with manual
+  AASM staging (N1, N2, N3, R, W) and manually annotated arousals; dates,
+  times and IDs were replaced (all start 22:00 on 1.1.85). v2 is the same 20
+  recordings with deliberate problems (corrupt/truncated files, misaligned or
+  scrambled staging, relabelled channels, altered units, sample rates,
+  referencing, filtering, EDF+D gaps, varied annotation formats). The full
+  GRINS recordings (500 Hz, with EOG/EMG, patients with schizophrenia and
+  other disorders) are not public. Recording site is not stated; GRINS sites
+  are in China (Wuxi, Beijing), so a Chinese site is inferred. The NSRR
+  listing reportedly shows 127 files, 14.7 GB and recording years 2019-2022
+  (seen only in a search-result summary, not verified on the page, so
+  size_gb is omitted). NSRR also asks users to cite the Luna walkthrough and
+  the dataset URL and to include the NSRR NHLBI funding acknowledgement.

@@ -1,0 +1,63 @@
+id: uestc-multinight
+name: A Continuous Multi-night EEG Sleep Database
+short_name: UESTC multi-night
+description: >
+  Three consecutive nights of sleep EEG from 20 healthy young adults recorded in
+  the Brain Science and Sleep Laboratory at the University of Electronic Science
+  and Technology of China (UESTC), Chengdu. Each night has 5 EEG, 2 EOG and chin
+  EMG channels, with sleep stages scored independently by three physician
+  experts from different sleep centres under AASM rules. Built for studying
+  night-to-night sleep structure similarity and personalised closed-loop
+  stimulation.
+url: https://osf.io/gx36m/
+doi: 10.17605/OSF.IO/GX36M
+host: OSF
+access: open
+license: CC0-1.0
+year_released: 2025
+citations:
+  - text: >
+      Ying S, Fu J, Wang L, Zhang H, Yu Y, Wang H, Xie J, Liu T. A continuous
+      multi-night sleep database for exploring sleep structure similarity. Sci
+      Data. 2025;12:946.
+    doi: 10.1038/s41597-025-05202-6
+population:
+  species: human
+  n_subjects: 20
+  n_recordings: 60
+  age_range: [22, 29]
+  groups: [healthy]
+recording:
+  type: [psg]
+  setting: [lab]
+  modalities: [eeg, eog, emg]
+  eeg_channels: 5
+  eeg_montage: F4-A1, C4-A1, FT8-A1, O2-A1, P4-A1
+  sampling_rate_hz: 500
+  nights_per_subject: "3 (consecutive)"
+annotations:
+  staging: aasm
+  epoch_s: 30
+  n_scorers: 3
+  events: []
+formats: [edf, csv, txt]
+tags: [staging, multi-scorer, longitudinal]
+verified: false
+date_added: 2026-10-15
+last_checked: 2026-10-15
+notes: >
+  15 M / 5 F, age 24.95 ± 1.53 (range 22-29). Healthy, no psychiatric,
+  neurological or sleep disorders; no alcohol, medication, caffeine, naps or
+  strenuous exercise from 24 h before. Lights out about 23:30-08:30.
+  Nights 1-2 recorded with an ICSMS amplifier (Chengdu) and night 3 with a
+  Brain Products actiCHamp, so device differs within subject. EOG-R above the
+  right outer canthus, EOG-L below the left; earlobe (A1) reference. Signals
+  band-pass filtered 0.3-40 Hz (IIR Butterworth). AASM v2.4; the three
+  scorers' hypnograms are released separately (no consensus). Spindles and
+  slow waves were detected automatically (Luna) and provided as feature
+  spreadsheets, not manual events. Zip with SLP001-SLP020, each with
+  Day1-Day3 folders; 60 recordings is derived (20 x 3), the paper reports no
+  missing nights. The OSF project licence is CC0 1.0; the article itself is
+  CC BY-NC-ND 4.0. OSF project created Nov 2024; year_released uses the 2025
+  paper. Download size not determined (OSF file API timed out). The id is
+  coined here; the dataset has no official short name.

@@ -1,0 +1,76 @@
+id: surrey-ceegrid
+name: Surrey cEEGrid sleep data set
+short_name: Surrey cEEGrid
+description: >
+  Overnight recordings from 20 healthy adults at the Surrey Clinical Research
+  Centre sleep laboratory (spring 2017), with around-the-ear EEG (cEEGrid
+  flex-printed electrode arrays) recorded alongside standard PSG on the same
+  night. Both the PSG and the cEEGrid recordings were manually sleep scored.
+  Collected for a project on wearable sleep monitoring and released in BIDS.
+url: https://openneuro.org/datasets/ds005207
+doi: 10.18112/openneuro.ds005207.v1.0.0
+host: OpenNeuro
+access: open
+license: CC0-1.0
+year_released: 2024
+citations:
+  - text: >
+      Mikkelsen KB, Ebajemito JK, Bonmati-Carrion MA, Santhi N, Revell VL,
+      Atzori G, della Monica C, Debener S, Dijk D-J, Sterr A, De Vos M.
+      Machine-learning-derived sleep-wake staging from around-the-ear
+      electroencephalogram outperforms manual scoring and actigraphy. J Sleep
+      Res. 2019;28(2):e12786.
+    doi: 10.1111/jsr.12786
+  - text: >
+      Sterr A, Ebajemito JK, Mikkelsen KB, Bonmati-Carrion MA, Santhi N, della
+      Monica C, Grainger L, Atzori G, Revell V, Debener S, Dijk D-J, De Vos M.
+      Sleep EEG derived from behind-the-ear electrodes (cEEGrid) compared to
+      standard polysomnography: a proof of concept study. Front Hum Neurosci.
+      2018;12:452.
+    doi: 10.3389/fnhum.2018.00452
+population:
+  species: human
+  n_subjects: 20
+  n_recordings: 20
+  groups: [healthy]
+recording:
+  type: [psg, other]
+  setting: [lab]
+  modalities: [eeg, eog, emg, ecg, actigraphy]
+  eeg_channels: 6
+  eeg_montage: F3-A2, C3-A2, O1-A2, F4-A1, C4-A1, O2-A1 (PSG); cEEGrid around both ears
+  sampling_rate_hz: [128, 250]
+  nights_per_subject: "1 (~12 h in bed, approx. 22:00-10:00)"
+annotations:
+  staging: aasm
+  epoch_s: 30
+  events: []
+formats: [bids, set, edf, bdf, tsv]
+size_gb: 69.1
+tags: [staging, wearable-validation]
+verified: false
+date_added: 2026-10-15
+last_checked: 2026-10-15
+notes: >
+  OpenNeuro ds005207 v1.0.0 (2024-06-01). 20 subjects (sub-001 ... sub-029,
+  non-contiguous IDs), one night each; all 20 have a PSG recording and 19 have
+  a cEEGrid recording (sub-012 is PSG only), so 39 EEG files in total. Each
+  recording has its own manual 30-s hypnogram (PSG scoring and separate
+  cEEGrid scoring, stages W/N1/N2/N3/REM plus artefact/movement/unscored
+  codes); per the JSR paper scoring followed AASM and two technicians scored
+  but only one scorer's hypnogram appears to be released (inferred from file
+  names). PSG (SOMNOmedics SOMNO HD): 6 EEG at 128 Hz referenced to the
+  contralateral mastoid, 3 EOG (128 Hz), 5 chin EMG derivations and ECG at
+  256 Hz. cEEGrid: SMARTING (mBrainTrain) wireless amplifier at 250 Hz; the
+  BIDS sidecar lists 15 EEG channels referenced to R4b plus 6 misc channels.
+  Data are EEGLAB .set/.fdt; sourcedata holds the original PSG EDF, cEEGrid
+  BDF/EDF, hypnogram text files and Actiwatch (.AWD) files. PSG and cEEGrid
+  were not time-aligned at recording; derivatives/aligned1 gives the authors'
+  best-effort aligned cEEGrid for 18 subjects. No demographics are released
+  (participants.tsv has IDs only); the papers report the recruited 20 as aged
+  34.9 +/- 13.8 years (8 M), and the analysed subsets as 15 (Sterr 2018) or
+  12-15 recordings (Mikkelsen 2019) after losses and artefact exclusions. The
+  BIDS sidecars name the University of Oxford Institute of Biomedical
+  Engineering as institution, although recordings were made at Surrey. Size
+  (69.1 GB) is from the NEMAR mirror listing. Recording type "other" denotes
+  the cEEGrid ear-EEG.

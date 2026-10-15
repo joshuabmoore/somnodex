@@ -1,0 +1,68 @@
+id: bai-dementia
+name: Association of Sleep Electroencephalography-Based Brain Age Index With Dementia - Data and code
+short_name: BAI-Dementia
+description: >
+  Data release for Ye et al. (2020, JAMA Network Open), which computed a sleep
+  EEG brain age index (BAI) from clinical PSGs recorded at the Massachusetts
+  General Hospital Sleep Laboratory in 2009-2017 and compared it across
+  cognitive groups (healthy, non-dementia, symptomatic, MCI, dementia) in
+  patients aged 50 and over. The release holds de-identified per-PSG BAI
+  results, a PSG manifest with demographics, group labels and S3 paths to the
+  staged signal files, cohort-assignment evidence (NLP-derived dementia flags,
+  CDR/MMSE/MoCA scores), and analysis code.
+url: https://bdsp.io/content/v83ha57g3u22jz0eznrf/1.0.0/
+doi: 10.60508/17yf-6k87
+host: BDSP (AWS S3)
+access: dua
+license: BDSP Credentialed Health Data License 1.5.0
+year_released: 2026
+citations:
+  - text: >
+      Ye E, Sun H, Leone M, Paixao L, Thomas R, Lam A, Westover MB. Association
+      of Sleep Electroencephalography-Based Brain Age Index With Dementia - Data
+      and code (version 1.0.0). Brain Data Science Platform. 2026.
+    doi: 10.60508/17yf-6k87
+  - text: >
+      Ye E, Sun H, Leone MJ, Paixao L, Thomas RJ, Lam AD, Westover MB.
+      Association of Sleep Electroencephalography-Based Brain Age Index With
+      Dementia. JAMA Netw Open. 2020;3(9):e2017357.
+    doi: 10.1001/jamanetworkopen.2020.17357
+population:
+  species: human
+  n_subjects: 5144
+  groups: [healthy, dementia, older-adults, clinical]
+recording:
+  type: [psg]
+  setting: [lab]
+  modalities: [eeg]
+annotations:
+  staging: aasm
+  epoch_s: 30
+formats: [csv]
+tags: [ageing, clinical]
+verified: false
+date_added: 2026-10-15
+last_checked: 2026-10-15
+notes: >
+  Published on BDSP 25 April 2026; data at
+  s3://bdsp-opendata-credentialed/bai-dementia-sleep/, code at
+  github.com/bdsp-core/bai-dementia. Access needs BDSP credentialing and the
+  Credentialed Health Data Use Agreement, so it is not open. n_subjects is the
+  paper's 5,144 patients included in BAI analyses (of 9,834 PSGs screened);
+  5,144 is a patient count, not a PSG count. Counts in the release do not
+  line up with the paper: bai_per_psg_deid.csv has about 2,864 PSGs,
+  bai_psg_manifest.csv about 13,283 PSG files and cohort_v1_deid.csv about
+  22,985 assessed PSGs, so n_recordings is left out. Group sizes per the BDSP
+  page: 88 dementia, 44 MCI, 1,075 symptomatic, 3,024 non-dementia, of whom
+  2,336 healthy; the paper's Table 1 gives 81 dementia patients (96 studies)
+  and its Results text 2,336 for non-dementia. Paper: median age 54 (IQR
+  43-65) and 3,026 men (59%); the IQR conflicts with the age >=50 rule, so
+  these may describe a wider sample (unclear). The page does not say whether the staged signal files are raw EDF or
+  derived, nor give channels, sampling rate or size; the EEG modality and lab
+  setting are inferred from the paper (diagnostic, CPAP and split-night PSGs,
+  clinically scored to AASM in 30 s epochs). The signals likely overlap with
+  the Human Sleep Project (MGH) cohort, but the page does not say so. A
+  companion BDSP release, "Dementia detection from brain activity during
+  sleep" (10.60508/dysk-je18; 10,784 PSGs from 8,044 participants, features
+  only, raw signals by separate request), and the open BAI model release
+  (10.60508/et8c-2g96) are separate resources.

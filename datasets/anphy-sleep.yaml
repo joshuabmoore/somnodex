@@ -1,0 +1,63 @@
+id: anphy-sleep
+name: "ANPHY-Sleep: Open Sleep Database from Healthy Adults Using High-Density Scalp EEG"
+short_name: ANPHY-Sleep
+description: >
+  Overnight PSG with 83-electrode high-density scalp EEG from healthy adults
+  (ages 20-44) recorded in 2022-2023 at the Montreal Neurological Institute /
+  McGill University Health Centre sleep lab. Includes EOG, EMG and ECG, AASM
+  sleep stages scored by a board-certified technologist, artifact matrices and
+  average co-registered electrode positions. Billed as the first open
+  high-density EEG sleep database from healthy adults.
+url: https://osf.io/r26fh/
+doi: 10.17605/OSF.IO/R26FH
+host: OSF
+access: open
+license: CC0-1.0
+year_released: 2024
+citations:
+  - text: >
+      Wei X, Avigdor T, Ho A, et al. ANPHY-Sleep: an open sleep database from
+      healthy adults using high-density scalp electroencephalogram. Sci Data.
+      2024.
+    doi: 10.1038/s41597-024-03722-1
+population:
+  species: human
+  n_subjects: 28
+  n_recordings: 28
+  age_range: [20, 44]
+  groups: [healthy]
+recording:
+  type: [psg]
+  setting: [lab]
+  modalities: [eeg, eog, emg, ecg]
+  eeg_channels: 83
+  eeg_montage: 83 glued electrodes, 10-10 system (Nihon Kohden JE-120 amplifier)
+  sampling_rate_hz: 1000
+  nights_per_subject: "1"
+annotations:
+  staging: aasm
+  epoch_s: 30
+  n_scorers: 1
+  events: []
+formats: [edf, txt, csv, pos]
+size_gb: 85.8
+tags: [staging, high-density-eeg]
+verified: false
+date_added: 2026-10-15
+last_checked: 2026-10-15
+notes: >
+  The paper describes 29 healthy adults (16 M / 13 F, 32.17 ± 6.30 years, range
+  20-44), but the OSF project currently lists only 28 per-subject archives:
+  EPCTL01-EPCTL29 with no EPCTL08 (that subject, M, 24, is still in the
+  demographics CSV). Counts here are the 28 downloadable archives. Inclusion:
+  ages 18-45, BMI < 30, PSQI < 5, no sleep, psychiatric or neurological
+  disorders; people with AHI > 15 were excluded (their data are available only on
+  written request). Released signals: 83 HD-EEG, 4 EOG, 3 EMG (chin, left and
+  right leg; the Methods text says six EMG electrodes) and one modified lead II
+  ECG at 1000 Hz. Respiratory and SpO2 sensors are described but not listed
+  among the released signals. Staging was done in Polysmith v12 on a mastoid-referenced
+  montage; annotation TXT files give stage label (incl. lights on/off), start
+  time and duration. The paper describes 0.3-45 Hz filtering and artifact
+  detection in its processing; whether the released EDFs are filtered is not
+  stated. OSF license is CC0 1.0 (the Sci Data article itself is CC BY-NC-ND
+  4.0). Download is ~85.8 GB across 28 zip files (sum of OSF file sizes).

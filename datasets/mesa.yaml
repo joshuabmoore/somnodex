@@ -1,0 +1,63 @@
+id: mesa
+name: Multi-Ethnic Study of Atherosclerosis Sleep
+short_name: MESA Sleep
+description: >
+  Sleep ancillary exam (2010-2012) of the Multi-Ethnic Study of
+  Atherosclerosis, a six-centre US cohort of Black, White, Hispanic and
+  Chinese-American adults. Participants had one night of unattended home PSG,
+  7 days of wrist actigraphy and a sleep questionnaire, studied in relation to
+  ethnicity, sex and subclinical atherosclerosis. Distributed via the National
+  Sleep Research Resource.
+url: https://sleepdata.org/datasets/mesa
+doi: 10.25822/n7hq-c406
+host: NSRR
+access: dua
+year_released: 2016
+citations:
+  - text: >
+      Chen X, Wang R, Zee P, et al. Racial/ethnic differences in sleep
+      disturbances: the Multi-Ethnic Study of Atherosclerosis (MESA). Sleep.
+      2015;38(6):877-888.
+    doi: 10.5665/sleep.4732
+  - text: >
+      Zhang GQ, Cui L, Mueller R, et al. The National Sleep Research Resource:
+      towards a sleep data commons. J Am Med Inform Assoc. 2018;25(10):1351-1358.
+    doi: 10.1093/jamia/ocy064
+population:
+  species: human
+  n_subjects: 2056
+  n_recordings: 2056
+  age_range: [54, 95]
+  groups: [older-adults]
+recording:
+  type: [psg]
+  setting: [home]
+  modalities: [eeg, eog, emg, ecg, respiratory, spo2, ppg, position, actigraphy]
+  eeg_channels: 3
+  eeg_montage: Fz-Cz, Cz-Oz, C4-M1
+  sampling_rate_hz: 256
+  nights_per_subject: "1 PSG; 7 days of actigraphy"
+annotations:
+  staging: aasm
+  epoch_s: 30
+  events: [arousals, apneas, hypopneas, desaturations, limb-movements]
+formats: [edf, xml, csv]
+tags: [cohort, cardiovascular, apnea, ageing, large-scale]
+verified: false
+date_added: 2026-10-15
+last_checked: 2026-10-15
+notes: >
+  Requires an NSRR account and approved data access request. 2,237
+  participants enrolled in the sleep exam (1,198 F / 1,039 M; age 54-95, mean
+  69.6); raw PSG (EDF plus Profusion and NSRR XML annotations) is available for
+  2,056 participants (n_subjects uses this figure; age range and sex split are
+  for all 2,237), and 30-s epoch actigraphy CSVs (Actiwatch Spectrum, with
+  light) for 2,159. The Data Documentation Guide reports 2,166 PSGs received,
+  106 failing minimum criteria and 2,060 scored. Compumedics Somte; EEG/EOG/
+  chin EMG/ECG/pleth at 256 Hz, flow, thermistor, RIP bands, leg and position
+  at 32 Hz, SpO2 1 Hz; a thermistor change gives either a Therm or Aux_AC
+  channel. Staging and arousals per AASM 2007 rules; hypopneas tagged by >=30%
+  and >50% flow reduction (the >50% tag is labelled "Unsure"). Covariates
+  include demographics, BMI, AHI, HRV and questionnaires; other MESA exams are
+  via BioLINCC. MESA is longitudinal, but the sleep exam is a single visit
+  (Exam 5). No license is stated.

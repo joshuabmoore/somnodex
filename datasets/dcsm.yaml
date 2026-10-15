@@ -1,0 +1,51 @@
+id: dcsm
+name: DCSM Sleep Staging Dataset
+short_name: DCSM
+description: >
+  255 randomly selected, fully anonymised overnight lab-based PSG recordings
+  of patients referred to the Danish Center for Sleep Medicine in
+  2015-2018 for diagnosis of non-specific sleep-related
+  disorders. Released alongside U-Sleep (Perslev et al. 2021) for developing
+  and benchmarking sleep staging algorithms. Each recording comes with an
+  AASM hypnogram.
+url: https://erda.ku.dk/public/archives/db553715ecbe1f3ac66c1dc569826eef/published-archive.html
+host: ERDA (University of Copenhagen)
+access: open
+year_released: 2021
+citations:
+  - text: >
+      Perslev M, Darkner S, Kempfner L, Nikolic M, Jennum PJ, Igel C. U-Sleep:
+      resilient high-frequency sleep staging. NPJ Digit Med. 2021.
+    doi: 10.1038/s41746-021-00440-5
+population:
+  species: human
+  n_recordings: 255
+  groups: [clinical]
+recording:
+  type: [psg]
+  setting: [lab]
+  modalities: [eeg, eog, emg]
+  eeg_channels: 8
+  eeg_montage: F4-M1, F3-M2, C4-M1, C3-M2, O2-M1, O1-M2, T4-M1, T3-M2
+  sampling_rate_hz: 256
+  nights_per_subject: "1"
+annotations:
+  staging: aasm
+  epoch_s: 30
+formats: [edf, h5, ids]
+tags: [staging, clinical, benchmark]
+verified: false
+date_added: 2026-10-15
+last_checked: 2026-10-15
+notes: >
+  Archive created 2021-03-15 by Mathias Perslev on ERDA; it was previously
+  shared at https://sid.erda.dk/wsgi-bin/ls.py?share_id=fUH3xbOXv8, which
+  some papers still cite. Downloadable as one zip or via the U-Time package.
+  Each subject folder has psg.edf, psg.h5 and hypnogram.ids (init-duration-
+  stage format; stages W, N1, N2, N3, REM). EEG and EOG (E2-M1, E1-M2) at
+  256 Hz, band-pass 0.3-70 Hz; the HDF5 files also hold other modalities such
+  as EMG (full list not given). No age, sex or diagnosis data are released,
+  so n_subjects and age_range are left out (one recording per patient is
+  inferred from "randomly selected" PSGs). The archive shows a DOI section
+  with no value and states no license. epoch_s 30 is inferred from AASM
+  scoring. The earlier U-Time paper (2019) described DCSM as non-public.

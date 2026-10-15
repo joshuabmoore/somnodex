@@ -44,11 +44,18 @@
     FILTERS.forEach((f) => { const v = p.get(f.key); if (v) v.split(",").forEach((x) => state.sel[f.key].add(x)); });
     state.verifiedOnly = p.get("verified") === "1";
     if (p.get("sort")) { const [k, d] = p.get("sort").split(":"); state.sort = { key: k, dir: d === "desc" ? -1 : 1 }; }
-    if (p.get("tab") === "stats") state.tab = "stats";
+    if (p.get("tab") === "stats" || p.get("tab") === "pipelines") state.tab = p.get("tab");
+    window.SomnoPipelines?.readURL(p);
     state.open = decodeURIComponent(location.hash.slice(1)) || null;
   }
   function writeURL() {
     const p = new URLSearchParams();
+    if (state.tab === "pipelines") {
+      p.set("tab", "pipelines");
+      window.SomnoPipelines?.writeURL(p);
+      history.replaceState(null, "", `${location.pathname}?${p}`);
+      return;
+    }
     if (state.q) p.set("q", state.q);
     FILTERS.forEach((f) => { if (state.sel[f.key].size) p.set(f.key, [...state.sel[f.key]].join(",")); });
     if (state.verifiedOnly) p.set("verified", "1");
@@ -202,6 +209,7 @@
       `<li>${esc(c.text)}${c.doi ? ` <a href="https://doi.org/${esc(c.doi)}" target="_blank" rel="noopener">doi:${esc(c.doi)}</a>` : ""}</li>`).join("");
     const repo = repoSlug();
     const editURL = repo ? `https://github.com/${repo}/edit/main/datasets/${encodeURIComponent(e.id)}.yaml` : null;
+    const nPipelines = window.SomnoPipelines?.countFor(e.id) || 0;
     return `<div class="detail">
       ${e.description ? `<p class="desc">${esc(e.description)}</p>` : ""}
       <div class="detail-grid">
@@ -217,6 +225,7 @@
         ${e.doi ? `<a class="btn" href="https://doi.org/${esc(e.doi)}" target="_blank" rel="noopener">DOI</a>` : ""}
         <a class="btn" href="#${encodeURIComponent(e.id)}" data-permalink>Permalink</a>
         ${editURL ? `<a class="btn" href="${editURL}" target="_blank" rel="noopener">Suggest an edit</a>` : ""}
+        ${nPipelines ? `<a class="btn" href="?tab=pipelines&p_dataset=${encodeURIComponent(e.id)}" data-pipelines="${esc(e.id)}">${nPipelines} preprocessing pipeline${nPipelines === 1 ? "" : "s"} →</a>` : ""}
       </div>
     </div>`;
   }
@@ -266,6 +275,11 @@
   }
 
   function update() {
+    if (state.tab === "pipelines") {
+      window.SomnoPipelines?.render();
+      writeURL();
+      return;
+    }
     const rows = filtered();
     const active = FILTERS.reduce((a, f) => a + state.sel[f.key].size, 0) + (state.q ? 1 : 0) + (state.verifiedOnly ? 1 : 0);
     $("#count").textContent = `${rows.length} of ${state.data.length} datasets`;
@@ -285,6 +299,9 @@
     });
     $("#tab-catalogue").hidden = tab !== "catalogue";
     $("#tab-stats").hidden = tab !== "stats";
+    $("#tab-pipelines").hidden = tab !== "pipelines";
+    $("#d-controls").hidden = tab === "pipelines";
+    $("#kpis").hidden = tab === "pipelines";
     update();
   }
 
@@ -317,6 +334,15 @@
     const toggleRow = (tr) => { const id = tr.dataset.id; state.open = state.open === id ? null : id; update(); };
     $("#table tbody").addEventListener("click", (ev) => {
       if (ev.target.closest("a")) {
+        const pl = ev.target.closest("[data-pipelines]");
+        if (pl) {
+          ev.preventDefault();
+          state.open = null;
+          window.SomnoPipelines?.showDataset(pl.dataset.pipelines);
+          setTab("pipelines");
+          window.scrollTo({ top: 0 });
+          return;
+        }
         if (ev.target.closest("[data-permalink]")) {
           ev.preventDefault();
           navigator.clipboard?.writeText(location.href).then(() => { ev.target.textContent = "Link copied"; });
@@ -366,6 +392,7 @@
       $("#empty").textContent = "Could not load data/datasets.json. Build the site with scripts/build.py.";
       return;
     }
+    await window.SomnoPipelines?.load(Object.fromEntries(state.data.map((e) => [e.id, e])), update);
     setTab(state.tab);
     if (state.open) document.querySelector(`tr.row[data-id="${CSS.escape(state.open)}"]`)?.scrollIntoView({ block: "center" });
   }

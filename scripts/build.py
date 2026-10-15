@@ -120,7 +120,7 @@ def main() -> int:
     args = ap.parse_args()
 
     entries, errors = validate_entries(dataset_files())
-    pipelines, pipeline_errors = validate_pipelines(pipeline_files(), {e.get("id") for e in entries})
+    pipelines, pipeline_errors = validate_pipelines(pipeline_files(), {e["id"]: e for e in entries if isinstance(e.get("id"), str)})
     errors += pipeline_errors
     if errors:
         print("✗ Validation failed; run scripts/validate.py for details:")

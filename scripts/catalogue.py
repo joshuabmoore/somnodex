@@ -96,11 +96,14 @@ def validate_entries(paths: list[Path]) -> tuple[list[dict], list[str]]:
     return entries, errors
 
 
-def validate_pipelines(paths: list[Path], dataset_ids: set[str]) -> tuple[list[dict], list[str]]:
-    """Validate pipeline entries against their schema and against the datasets they reference."""
+def validate_pipelines(paths: list[Path], datasets: dict[str, dict]) -> tuple[list[dict], list[str]]:
+    """Validate pipeline entries against their schema, each other, and the datasets they reference.
+
+    `datasets` maps dataset id -> dataset entry.
+    """
     validator = Draft202012Validator(load_schema(PIPELINE_SCHEMA_PATH), format_checker=FormatChecker())
     entries, errors = [], []
-    seen_ids, seen_keys = {}, {}
+    seen_ids, seen_keys, seen_sources, seen_subsets = {}, {}, {}, {}
 
     for path in paths:
         rel = path.relative_to(ROOT) if path.is_relative_to(ROOT) else path
@@ -126,8 +129,25 @@ def validate_pipelines(paths: list[Path], dataset_ids: set[str]) -> tuple[list[d
             seen_ids[eid] = rel
 
         ds = entry.get("dataset")
-        if ds and ds not in dataset_ids:
+        if ds and ds not in datasets:
             errors.append(f"{rel}: dataset: '{ds}' is not an id in datasets/")
+
+        # A subset can't be bigger than the dataset it comes from.
+        subset = entry.get("subset") or {}
+        pop = (datasets.get(ds) or {}).get("population") or {}
+        for field in ("n_subjects", "n_recordings"):
+            n, total = subset.get(field), pop.get(field)
+            if isinstance(n, int) and isinstance(total, int) and n > total:
+                errors.append(f"{rel}: subset/{field}: {n} exceeds the dataset's {field} ({total})")
+
+        # A subset name means the same thing everywhere, so it belongs to one dataset.
+        sname = subset.get("name")
+        if sname and ds:
+            if sname in seen_subsets and seen_subsets[sname][0] != ds:
+                other_ds, other_rel = seen_subsets[sname]
+                errors.append(f"{rel}: subset/name '{sname}' is used for dataset '{other_ds}' in {other_rel}")
+            else:
+                seen_subsets.setdefault(sname, (ds, rel))
 
         # The same source applied to the same subset of the same dataset should be one file.
         src = entry.get("source") or {}
@@ -137,6 +157,17 @@ def validate_pipelines(paths: list[Path], dataset_ids: set[str]) -> tuple[list[d
             errors.append(f"{rel}: same source, dataset and subset as {seen_keys[key]}")
         elif src_key:
             seen_keys[key] = rel
+
+        # Files describing the same source (one per dataset) must describe it the same way.
+        if src_key:
+            if src_key in seen_sources:
+                other_src, other_rel = seen_sources[src_key]
+                for field in ("type", "title", "short_name", "authors", "year", "venue", "doi"):
+                    a, b = _norm_text(src.get(field)), _norm_text(other_src.get(field))
+                    if a is not None and b is not None and a != b:
+                        errors.append(f"{rel}: source/{field} differs from {other_rel} for the same source")
+            else:
+                seen_sources[src_key] = (src, rel)
 
         for name, step in (entry.get("steps") or {}).items():
             if not isinstance(step, dict):
@@ -163,6 +194,10 @@ def validate_pipelines(paths: list[Path], dataset_ids: set[str]) -> tuple[list[d
             chain.append(cur)
             cur = by_id[cur].get("based_on")
     return entries, errors
+
+
+def _norm_text(value):
+    return " ".join(value.split()) if isinstance(value, str) else value
 
 
 def _norm_url(url):

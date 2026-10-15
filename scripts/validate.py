@@ -20,8 +20,8 @@ def main(argv: list[str]) -> int:
     # everything, but only report errors for the targeted files when files are given.
     pipeline_targets = {t for t in targets if t.parent.name == "pipelines"}
     entries, errors = validate_entries(sorted(set(all_datasets) | (set(targets) - pipeline_targets)))
-    dataset_ids = {e.get("id") for e in entries}
-    _, pipeline_errors = validate_pipelines(sorted(set(all_pipelines) | pipeline_targets), dataset_ids)
+    datasets = {e["id"]: e for e in entries if isinstance(e.get("id"), str)}
+    _, pipeline_errors = validate_pipelines(sorted(set(all_pipelines) | pipeline_targets), datasets)
     errors += pipeline_errors
     if argv:
         names = {str(t.name) for t in targets}

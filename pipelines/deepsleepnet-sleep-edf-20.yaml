@@ -1,0 +1,68 @@
+id: deepsleepnet-sleep-edf-20
+source:
+  type: paper
+  short_name: DeepSleepNet
+  title: >
+    DeepSleepNet: a model for automatic sleep stage scoring based on raw
+    single-channel EEG
+  authors: Supratak A, Dong H, Wu C, Guo Y
+  year: 2017
+  venue: IEEE Transactions on Neural Systems and Rehabilitation Engineering
+  doi: 10.1109/TNSRE.2017.2721116
+  code:
+    url: https://github.com/akaraspt/deepsleepnet
+dataset: sleep-edf-expanded
+subset:
+  name: sleep-edf-20
+  n_subjects: 20
+  n_recordings: 39
+  description: >
+    Sleep Cassette subjects 0-19 from the 2013 PhysioNet release; one night is
+    missing for subject 13, giving 39 recordings.
+task: [staging]
+steps:
+  channels:
+    status: done
+    channels: [Fpz-Cz, Pz-Oz]
+    selection: fixed
+    evaluated_separately: true
+    source: [paper]
+  resampling:
+    status: none
+    notes: Used at the native 100 Hz.
+    source: [paper]
+  epoching:
+    status: done
+    epoch_s: 30
+    source: [paper]
+  label_mapping:
+    status: done
+    scheme: aasm-5
+    mapping:
+      S3: N3
+      S4: N3
+      MOVEMENT: drop
+      UNKNOWN: drop
+    source: [paper, "code: prepare_physionet.py"]
+  wake_trimming:
+    status: done
+    keep_before_min: 30
+    keep_after_min: 30
+    source: [paper, "code: prepare_physionet.py"]
+  split:
+    status: done
+    scheme: k-fold
+    k: 20
+    unit: subject
+    source: [paper]
+  class_balancing:
+    status: done
+    method: oversampling
+    applied_to: representation-learning (pre-training) stage only
+    source: [paper]
+verified: false
+date_added: 2026-10-16
+notes: >
+  Example entry drafted from memory of the paper; filtering and normalisation
+  not yet extracted. Check every step against the paper and code before
+  setting verified: true.

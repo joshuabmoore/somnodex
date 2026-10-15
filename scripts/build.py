@@ -5,6 +5,7 @@ Outputs (in _site/):
     index.html, app.js, style.css   copied from site/
     data/datasets.json              all entries + summary stats
     data/datasets.csv               flat table for spreadsheets / pandas
+    data/pipelines.json             preprocessing pipeline entries
 
 Also refreshes the summary table in README.md between the CATALOGUE markers.
 
@@ -23,7 +24,7 @@ import sys
 from collections import Counter
 from pathlib import Path
 
-from catalogue import ROOT, dataset_files, validate_entries
+from catalogue import ROOT, dataset_files, pipeline_files, validate_entries, validate_pipelines
 
 SITE_SRC = ROOT / "site"
 README = ROOT / "README.md"
@@ -119,6 +120,8 @@ def main() -> int:
     args = ap.parse_args()
 
     entries, errors = validate_entries(dataset_files())
+    pipelines, pipeline_errors = validate_pipelines(pipeline_files(), {e.get("id") for e in entries})
+    errors += pipeline_errors
     if errors:
         print("✗ Validation failed; run scripts/validate.py for details:")
         for err in errors:
@@ -142,11 +145,15 @@ def main() -> int:
         w = csv.DictWriter(f, fieldnames=CSV_COLUMNS)
         w.writeheader()
         w.writerows(flatten(e) for e in entries)
+    pipelines.sort(key=lambda p: (p["dataset"], p["id"]))
+    (out / "data" / "pipelines.json").write_text(
+        json.dumps({"generated_at": payload["generated_at"], "pipelines": pipelines}, indent=1, ensure_ascii=False),
+        encoding="utf-8")
     (out / ".nojekyll").touch()
 
     if not args.no_readme:
         update_readme(entries)
-    print(f"✓ Built {len(entries)} dataset(s) into {out}")
+    print(f"✓ Built {len(entries)} dataset(s) and {len(pipelines)} pipeline(s) into {out}")
     return 0
 
 

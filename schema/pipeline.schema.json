@@ -1,0 +1,240 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/OWNER/somnodex/schema/pipeline.schema.json",
+  "title": "Preprocessing pipeline entry",
+  "description": "How one source (paper, repo, toolbox) preprocesses one dataset. A source that uses several datasets gets one file per dataset. Within `steps`, a missing key means 'not yet extracted'; `status: not_reported` means the source was checked and says nothing; `status: none` means the source explicitly does not do this step.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "source", "dataset", "task", "steps", "date_added"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Lowercase slug, usually <method>-<dataset-variant> (e.g. deepsleepnet-sleep-edf-20); must match the file name."
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "title"],
+      "properties": {
+        "type": { "enum": ["paper", "preprint", "repo", "toolbox", "thesis", "challenge", "other"] },
+        "title": { "type": "string", "minLength": 2 },
+        "short_name": { "type": "string", "description": "Method or tool name, e.g. DeepSleepNet." },
+        "authors": { "type": "string" },
+        "year": { "type": "integer", "minimum": 1960, "maximum": 2100 },
+        "venue": { "type": "string" },
+        "doi": { "$ref": "#/$defs/doi" },
+        "url": { "$ref": "#/$defs/url" },
+        "code": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["url"],
+          "properties": {
+            "url": { "$ref": "#/$defs/url" },
+            "commit": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{7,40}$",
+              "description": "Commit the code-derived values were read from."
+            }
+          }
+        }
+      }
+    },
+    "dataset": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "id of an entry in datasets/."
+    },
+    "subset": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Which part of the dataset was used.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+          "description": "Community name for the subset, reused across entries so they can be grouped (e.g. sleep-edf-20, sleep-edf-78, shhs1)."
+        },
+        "n_subjects": { "type": "integer", "minimum": 1 },
+        "n_recordings": { "type": "integer", "minimum": 1 },
+        "description": { "type": "string" }
+      }
+    },
+    "task": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+      "description": "e.g. staging, apnea-detection, arousal-detection, spindle-detection, representation-learning"
+    },
+    "based_on": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "id of another pipeline this one says it follows. Only record steps that differ, or that you've confirmed are the same."
+    },
+    "steps": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "channels": {
+          "description": "Which signals are used and how they are derived.",
+          "allOf": [{ "$ref": "#/$defs/step" }],
+          "unevaluatedProperties": false,
+          "properties": {
+            "channels": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string" },
+              "description": "Channel names or derivations as used, e.g. Fpz-Cz, C4-M1, EOG(L)."
+            },
+            "selection": {
+              "enum": ["fixed", "per-recording-best", "random-per-batch", "all-available", "other"],
+              "description": "fixed = same channels every recording; random-per-batch = sampled during training (e.g. U-Sleep)."
+            },
+            "rereferencing": { "type": "string", "description": "e.g. 'none (as recorded)', 'contralateral mastoid', 'average'." },
+            "evaluated_separately": {
+              "type": "boolean",
+              "description": "true if each listed channel is a separate experiment rather than a joint input."
+            }
+          }
+        },
+        "filtering": {
+          "allOf": [{ "$ref": "#/$defs/step" }],
+          "unevaluatedProperties": false,
+          "properties": {
+            "highpass_hz": { "type": "number", "minimum": 0 },
+            "lowpass_hz": { "type": "number", "exclusiveMinimum": 0 },
+            "notch_hz": { "type": "array", "items": { "type": "number", "exclusiveMinimum": 0 } },
+            "design": { "type": "string", "description": "e.g. 'Butterworth order 4, zero-phase', 'FIR (MNE default)'." }
+          }
+        },
+        "resampling": {
+          "allOf": [{ "$ref": "#/$defs/step" }],
+          "unevaluatedProperties": false,
+          "properties": {
+            "target_hz": { "type": "number", "exclusiveMinimum": 0 },
+            "method": { "type": "string", "description": "e.g. 'polyphase (scipy.signal.resample_poly)'." }
+          }
+        },
+        "epoching": {
+          "allOf": [{ "$ref": "#/$defs/step" }],
+          "unevaluatedProperties": false,
+          "properties": {
+            "epoch_s": { "type": "number", "exclusiveMinimum": 0 },
+            "context_epochs": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Total epochs in one model input (1 = single-epoch classification)."
+            },
+            "overlap_s": { "type": "number", "minimum": 0 }
+          }
+        },
+        "label_mapping": {
+          "description": "How the dataset's original labels become training targets.",
+          "allOf": [{ "$ref": "#/$defs/step" }],
+          "unevaluatedProperties": false,
+          "properties": {
+            "scheme": { "enum": ["aasm-5", "rk-6", "4-class", "3-class", "wake-sleep", "other"] },
+            "mapping": {
+              "type": "object",
+              "description": "Original label -> target label, or 'drop' to discard those epochs. Only list labels that change or are dropped.",
+              "additionalProperties": { "type": "string" }
+            }
+          }
+        },
+        "wake_trimming": {
+          "description": "Removal of wake at the start/end of a recording.",
+          "allOf": [{ "$ref": "#/$defs/step" }],
+          "unevaluatedProperties": false,
+          "properties": {
+            "keep_before_min": { "type": "number", "minimum": 0, "description": "Minutes of wake kept before the first sleep epoch." },
+            "keep_after_min": { "type": "number", "minimum": 0, "description": "Minutes of wake kept after the last sleep epoch." },
+            "other": { "type": "string", "description": "For rules that don't fit, e.g. 'lights-off to lights-on only'." }
+          }
+        },
+        "normalisation": {
+          "allOf": [{ "$ref": "#/$defs/step" }],
+          "unevaluatedProperties": false,
+          "properties": {
+            "method": { "enum": ["zscore", "robust", "minmax", "clip", "other"] },
+            "scope": { "enum": ["epoch", "recording", "subject", "dataset", "training-set"] },
+            "per_channel": { "type": "boolean" },
+            "clip": { "type": "string", "description": "Clipping rule applied with or after normalisation, e.g. '±20 IQR'." }
+          }
+        },
+        "artefact_rejection": {
+          "description": "Epoch-level removal based on signal quality.",
+          "allOf": [{ "$ref": "#/$defs/step" }],
+          "unevaluatedProperties": false,
+          "properties": {
+            "method": { "type": "string", "description": "e.g. 'amplitude > 500 µV', 'flat-line detection', 'scorer-marked artefact'." }
+          }
+        },
+        "exclusion": {
+          "description": "Subject- or recording-level exclusion.",
+          "allOf": [{ "$ref": "#/$defs/step" }],
+          "unevaluatedProperties": false,
+          "properties": {
+            "criteria": { "type": "string" },
+            "n_excluded": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "split": {
+          "description": "How data were divided for training and evaluation.",
+          "allOf": [{ "$ref": "#/$defs/step" }],
+          "unevaluatedProperties": false,
+          "properties": {
+            "scheme": { "enum": ["k-fold", "leave-one-subject-out", "holdout", "predefined", "nested-k-fold", "other"] },
+            "k": { "type": "integer", "minimum": 2 },
+            "unit": {
+              "enum": ["subject", "recording", "epoch"],
+              "description": "What is kept together on one side of the split. 'epoch' leaks subject information."
+            },
+            "validation": { "type": "string", "description": "How the validation set is drawn, if separate from test." }
+          }
+        },
+        "class_balancing": {
+          "allOf": [{ "$ref": "#/$defs/step" }],
+          "unevaluatedProperties": false,
+          "properties": {
+            "method": { "enum": ["oversampling", "undersampling", "class-weights", "augmentation", "balanced-sampling", "other"] },
+            "applied_to": { "type": "string", "description": "e.g. 'pre-training stage only'." }
+          }
+        }
+      }
+    },
+    "verified": {
+      "type": "boolean",
+      "default": false,
+      "description": "true once every recorded step has been checked against the cited source."
+    },
+    "date_added": { "type": "string", "format": "date" },
+    "last_checked": { "type": "string", "format": "date" },
+    "notes": { "type": "string" }
+  },
+  "$defs": {
+    "doi": { "type": "string", "pattern": "^10\\.\\d{4,9}/\\S+$" },
+    "url": { "type": "string", "format": "uri", "pattern": "^https?://" },
+    "step": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": {
+          "enum": ["done", "none", "not_reported"],
+          "description": "done = the source does this step; none = it explicitly doesn't; not_reported = the source was checked and is silent."
+        },
+        "source": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" },
+          "description": "Where each value came from, e.g. 'paper §2.1', 'code: prepare_physionet.py'."
+        },
+        "discrepancy": {
+          "type": "string",
+          "description": "Where the paper and the code (or two parts of the paper) disagree."
+        },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

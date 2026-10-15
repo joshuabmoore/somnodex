@@ -1,0 +1,55 @@
+id: attnsleep-shhs
+source:
+  type: paper
+  short_name: AttnSleep
+  title: >
+    An attention-based deep learning approach for sleep stage classification
+    with single-channel EEG
+  authors: Eldele E, Chen Z, Liu C, Wu M, Kwoh CK, Li X, Guan C
+  year: 2021
+  venue: IEEE Transactions on Neural Systems and Rehabilitation Engineering
+  doi: 10.1109/TNSRE.2021.3076234
+  code:
+    url: https://github.com/emadeldeen24/AttnSleep
+dataset: shhs
+subset:
+  name: shhs1
+  n_subjects: 329
+  description: SHHS visit 1 subjects selected as having regular sleep.
+task: [staging]
+steps:
+  channels:
+    status: done
+    channels: [C4-A1]
+    selection: fixed
+    source: [paper]
+  resampling:
+    status: none
+    notes: Used at the native 125 Hz.
+    source: [paper]
+  epoching:
+    status: done
+    epoch_s: 30
+    source: [paper]
+  label_mapping:
+    status: done
+    scheme: aasm-5
+    mapping:
+      "3": N3
+      "4": N3
+    source: [paper]
+  exclusion:
+    status: done
+    criteria: Subjects without regular sleep were excluded (exact rule to be extracted).
+    source: [paper]
+  split:
+    status: done
+    scheme: k-fold
+    k: 20
+    unit: subject
+    source: [paper]
+verified: false
+date_added: 2026-10-16
+notes: >
+  Example entry drafted from memory of the paper; the subject-selection rule
+  in particular needs checking against the paper and code.

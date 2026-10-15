@@ -63,6 +63,17 @@ datasets/*.yaml ──► scripts/validate.py ──► scripts/build.py ──�
 - **The site** is a single static page that loads `data/datasets.json`. It supports full-text search, faceted filters (access, modality, host, population, staging, events, tags…), sortable columns, per-dataset detail views with citations, and a statistics tab that updates with the filters. Filter state lives in the URL, so any view can be shared.
 - **`verified: false`** marks entries that haven't been checked against the source documentation yet; they show an *unverified* badge.
 
+## Preprocessing pipelines
+
+Papers preprocess the same dataset in very different ways, and those choices change the results. [`pipelines/`](pipelines) records how each paper, repo or toolbox prepared a dataset: one YAML file per (source × dataset) pair, with structured steps (channels, filtering, resampling, epoching, label mapping, wake trimming, normalisation, artefact rejection, exclusion, splits, class balancing). [`schema/pipeline.schema.json`](schema/pipeline.schema.json) defines the fields.
+
+- Each step has a `status`: `done`, `none` (explicitly not done) or `not_reported` (the source is silent). A missing step means it hasn't been extracted yet.
+- `source` on each step says where the value came from (paper section, code file); `discrepancy` records where the paper and code disagree.
+- `based_on` points to another pipeline the source says it follows, so derived pipelines only record what differs.
+- `dataset` must be an `id` in `datasets/`; CI checks this.
+
+Build output includes `data/pipelines.json`.
+
 ## Adding a dataset
 
 **From anywhere (phone included):** open the [Add a dataset](../../issues/new?template=add-dataset.yml) issue form. Only name, URL, access and modalities are required. An Action converts the issue into `datasets/<id>.yaml`, validates it, and opens a PR. Editing the issue updates the PR.

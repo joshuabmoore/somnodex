@@ -1,0 +1,46 @@
+id: usleep-shhs
+source:
+  type: paper
+  short_name: U-Sleep
+  title: >
+    U-Sleep: resilient high-frequency sleep staging
+  authors: Perslev M, Darkner S, Kempfner L, Nikolic M, Jennum PJ, Igel C
+  year: 2021
+  venue: npj Digital Medicine
+  doi: 10.1038/s41746-021-00440-5
+  code:
+    url: https://github.com/perslev/U-Time
+dataset: shhs
+task: [staging]
+steps:
+  channels:
+    status: done
+    channels: [EEG, EOG]
+    selection: random-per-batch
+    notes: >
+      One EEG and one EOG channel, sampled from those available during
+      training; at test time predictions are combined across channel pairs.
+    source: [paper]
+  resampling:
+    status: done
+    target_hz: 128
+    source: [paper]
+  normalisation:
+    status: done
+    method: robust
+    scope: recording
+    per_channel: true
+    clip: ±20 IQR
+    source: [paper]
+  label_mapping:
+    status: done
+    scheme: aasm-5
+    mapping:
+      "3": N3
+      "4": N3
+    source: [paper]
+verified: false
+date_added: 2026-10-16
+notes: >
+  Example entry drafted from memory of the paper; subset, filtering,
+  epoching context and split not yet extracted.

@@ -1,0 +1,40 @@
+id: attnsleep-sleep-edf-20
+source:
+  type: paper
+  short_name: AttnSleep
+  title: >
+    An attention-based deep learning approach for sleep stage classification
+    with single-channel EEG
+  authors: Eldele E, Chen Z, Liu C, Wu M, Kwoh CK, Li X, Guan C
+  year: 2021
+  venue: IEEE Transactions on Neural Systems and Rehabilitation Engineering
+  doi: 10.1109/TNSRE.2021.3076234
+  code:
+    url: https://github.com/emadeldeen24/AttnSleep
+dataset: sleep-edf-expanded
+subset:
+  name: sleep-edf-20
+task: [staging]
+based_on: deepsleepnet-sleep-edf-20
+steps:
+  channels:
+    status: done
+    channels: [Fpz-Cz]
+    selection: fixed
+    source: [paper]
+  split:
+    status: done
+    scheme: k-fold
+    k: 20
+    unit: subject
+    source: [paper]
+  class_balancing:
+    status: done
+    method: class-weights
+    notes: Class-aware loss weighting.
+    source: [paper]
+verified: false
+date_added: 2026-10-16
+notes: >
+  Example entry. Follows DeepSleepNet's data preparation for Sleep-EDF; only
+  the steps that differ or were re-stated are recorded here.

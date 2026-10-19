@@ -36,9 +36,10 @@
     <div class="tabs" role="tablist">
       <button role="tab" class="tab active" data-tab="catalogue" aria-selected="true">Catalogue</button>
       <button role="tab" class="tab" data-tab="stats" aria-selected="false">Statistics</button>
+      <button role="tab" class="tab" data-tab="pipelines" aria-selected="false">Pipelines</button>
     </div>
 
-    <section class="controls" aria-label="Filters">
+    <section class="controls" id="d-controls" aria-label="Filters">
       <input id="q" type="search" placeholder="Search names, hosts, montages, tags…" autocomplete="off">
       <div class="filter-row" id="filters"></div>
       <div class="filter-meta">
@@ -73,6 +74,25 @@
       <p class="note">Statistics reflect the datasets currently matching your filters.</p>
       <div class="charts" id="charts"></div>
     </section>
+
+    <section id="tab-pipelines" class="panel" hidden>
+      <div id="p-list-view">
+        <p class="note">How papers, repositories and toolboxes preprocess each dataset. Select pipelines to compare them step by step.</p>
+        <div class="controls" aria-label="Pipeline filters">
+          <input id="pq" class="search" type="search" placeholder="Search methods, papers, channels, subsets…" autocomplete="off">
+          <div class="filter-row" id="p-filters"></div>
+          <div class="filter-meta">
+            <span id="p-count"></span>
+            <label class="toggle"><input type="checkbox" id="p-verified"> verified only</label>
+            <button id="p-clear" class="linkish" type="button">clear filters</button>
+            <a href="data/pipelines.json">JSON</a>
+          </div>
+        </div>
+        <div id="p-list"></div>
+        <div class="tray" id="p-tray" hidden></div>
+      </div>
+      <div id="p-compare" hidden></div>
+    </section>
   </main>
 
   <footer class="wrap foot">
@@ -80,6 +100,7 @@
     <span>Entries marked <span class="badge unverified">unverified</span> have not yet been checked against the source documentation.</span>
   </footer>
 
+  <script src="pipelines.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
